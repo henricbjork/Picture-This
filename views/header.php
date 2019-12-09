@@ -11,5 +11,6 @@ require __DIR__ . '/../app/autoload.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Picture This</title>
 </head>
+<h1>head</h1>
 
 <body>
