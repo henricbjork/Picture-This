@@ -10,10 +10,4 @@
         <?php endif; ?>
     </nav>
 
-    <div class="bottomNav">
-        <a href="index.php">Feed</a>
-        <a href="#">New Photo</a>
-        <a href="/profile.php">Profile</a>
-    </div>
-
 <?php endif; ?>
