@@ -8,7 +8,7 @@
 
     <?php else : ?>
 
-        <p>You need to be logged in to see this.</p>
+        <p>You need to <a href="/login.php">log in<a> to see this.</p>
 
     <?php endif; ?>
 
