@@ -13,5 +13,5 @@
     <?php endif; ?>
 
 </section>
-
+        
 <?php require __DIR__ . '/views/footer.php' ?>
