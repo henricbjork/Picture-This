@@ -16,3 +16,10 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
+// This function echoes errors when they occur
+// and then removes the message on reload.
+function displayError()
+{
+    echo $_SESSION['errors'][0];
+    unset($_SESSION['errors']);
+}

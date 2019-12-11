@@ -21,6 +21,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     if (!$user) {
+        $_SESSION['errors'][] = 'Account does not exist. Please check your credentials.';
         redirect('/login.php');
     }
 

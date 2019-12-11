@@ -1,0 +1,18 @@
+nav,
+.bottomNav {
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    position: fixed;  
+    width: 100%;
+}
+nav {
+    top: 0;
+}
+.bottomNav {
+    bottom: 0;
+}
+a {
+    text-decoration: none;
+}

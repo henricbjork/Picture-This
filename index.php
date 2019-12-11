@@ -1,14 +1,17 @@
 <?php require __DIR__ . '/views/header.php' ?>
 
-<h1>Welcome</h1>
+<section class="startPage">
 
-<?php if (isset($_SESSION['user'])) : ?>
-    <p>Welcome, <?php echo $_SESSION['user']['name']; ?>!</p>
+    <?php if (isset($_SESSION['user'])) : ?>
 
-    <?php else: ?>
+        <p>This is the feed.</p>
 
-    <p>Welcome to the home page.</p>
-    
-<?php endif; ?>
+    <?php else : ?>
+
+        <p>You need to be logged in to see this.</p>
+
+    <?php endif; ?>
+
+</section>
 
 <?php require __DIR__ . '/views/footer.php' ?>
