@@ -1,10 +1,14 @@
 <?php require __DIR__ . '/views/header.php' ?>
 
-<form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
-    <label for="avatar">Upload profile image</label>
-    <input type="file" name="avatar" id="avatar" required accept="image/jpeg, image/jpg">
-    <button type=submit>Upload</button>
+<?php if (isset($_SESSION['errors'][0])) : ?>
+    <?php displayError(); ?>
+<?php endif; ?>
 
-    <img width="100px" height="100px" class="avatar" src="/app/avatar/avatar.jpeg">
-
-</form>
+<section class="editAvatar">
+    <div class="avatarContainer">
+        <img class="avatar" src="/app/avatar/avatar.jpeg">
+    </div>
+    <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
+        <label for="avatar">Change profile picture</label>
+        <input style="visibility:hidden;" type="file" name="avatar" id="avatar" required accept="image/jpeg, image/jpg">
+        <button type=submit>Confirm</button>

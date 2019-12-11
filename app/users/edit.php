@@ -9,11 +9,9 @@ if (isset($_FILES['avatar'])) {
     $destination = __DIR__ . '/../avatar/' . 'avatar.jpeg';
 
     if ($avatar['type'] != 'image/jpeg') {
-        echo 'Only jpegs allowed bitch';
+        $_SESSION['errors'][0] = 'File type not supported. Only jpeg files accepted.';
     } else {
         move_uploaded_file($avatar['tmp_name'], $destination);
     }
-}
+} 
 redirect('../../edit.php');
-
-?>
