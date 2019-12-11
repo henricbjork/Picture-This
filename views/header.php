@@ -10,8 +10,12 @@ require __DIR__ . '/../app/autoload.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Picture This</title>
+    <link href="assets/styles/main.css" rel="stylesheet">
+    <link href="assets/styles/nav.css" rel="stylesheet">
+    <link href="assets/styles/index.css" rel="stylesheet">
+    <link href="assets/styles/register.css" rel="stylesheet">
 </head>
-<h1>head</h1>
-<?php require __DIR__.'/navigation.php' ?>
+
+<?php require __DIR__ . '/navigation.php' ?>
 
 <body>
