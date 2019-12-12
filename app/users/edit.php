@@ -19,15 +19,17 @@ if (isset($_FILES['avatar'])) {
 
 if (isset($_POST['bio'])) {
     $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+    $id = $_SESSION['user']['id'];
 
-    $statement = $pdo->prepare('INSERT INTO users (bio) VALUES (:bio)');
+    $secondStatement = $pdo->prepare('UPDATE users SET bio = :bio WHERE id = :id');
 
-    if (!$statement) {
+    if (!$secondStatement) {
         die(var_dump($pdo->errorInfo()));
     }
 
-    $statement->execute([
+    $secondStatement->execute([
         ':bio' => $bio,
+        ':id' => $id,
     ]);
 
     redirect('/edit.php');
