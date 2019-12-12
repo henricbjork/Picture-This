@@ -13,5 +13,22 @@ if (isset($_FILES['avatar'])) {
     } else {
         move_uploaded_file($avatar['tmp_name'], $destination);
     }
-} 
-redirect('../../edit.php');
+
+    redirect('/edit.php');
+}
+
+if (isset($_POST['bio'])) {
+    $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+
+    $statement = $pdo->prepare('INSERT INTO users (bio) VALUES (:bio)');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':bio' => $bio,
+    ]);
+
+    redirect('/edit.php');
+}
