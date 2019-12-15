@@ -23,3 +23,19 @@ function displayError()
     echo $_SESSION['errors'][0];
     unset($_SESSION['errors']);
 }
+// This function redirects the user back to login page
+// if the user tries to access the site without being logged in
+function authenticateUser() {
+    if (!isset($_SESSION['user'])) 
+    {
+        redirect('/login.php');
+    }
+}
+function GUID()
+{
+    if (function_exists('com_create_guid') === true) {
+        return trim(com_create_guid(), '{}');
+    }
+
+    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+}

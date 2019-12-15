@@ -1,9 +1,14 @@
-.editAvatar {
+.editContainer {
+    border-bottom: 1px solid grey;
+}
+.editAvatar,
+.editBio {
     padding: 20px;
     display: flex;
     justify-content: center;
 }
-.editAvatar form {
+.editAvatar form,
+.editBio form {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,4 +25,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.editBio form textarea {
+    border: 1px solid black;
 }

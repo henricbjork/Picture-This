@@ -30,7 +30,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
         $_SESSION['user'] = $user;
     }
-}   
+}
 
 
 redirect('/index.php');
