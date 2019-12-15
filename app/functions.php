@@ -31,6 +31,9 @@ function authenticateUser() {
         redirect('/login.php');
     }
 }
+// This function returns a Globally Unique IDentifier
+// that is used to save uploaded image files with an unique
+// ID
 function GUID()
 {
     if (function_exists('com_create_guid') === true) {

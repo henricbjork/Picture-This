@@ -41,7 +41,7 @@ if (isset($_FILES['avatar'])) {
 }
 // !! LOGIC FOR CHANGING BIOGRAPHY
 if (isset($_POST['bio'])) {
-    $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+    $bio = nl2br(filter_var($_POST['bio'], FILTER_SANITIZE_STRING));
     $id = $_SESSION['user']['id'];
 
     $statement = $pdo->prepare('UPDATE users SET bio = :bio WHERE id = :id');
