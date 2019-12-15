@@ -29,3 +29,10 @@
 .editBio form textarea {
     border: 1px solid black;
 }
+.profileInformation h1 {
+    text-align: center;
+}
+.profileInformation form {
+    display: flex;
+    flex-direction: column;
+}

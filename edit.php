@@ -4,6 +4,7 @@
 <?php if (isset($_SESSION['errors'][0])) : ?>
     <?php displayError(); ?>
 <?php endif; ?>
+
 <section class="editContainer">
     <section class="editAvatar">
         <div class="avatarContainer">
@@ -23,4 +24,25 @@
             <button type="submit">Save</button>
         </form>
     </section>
+</section>
+
+<section class="profileInformation">
+    <h1>Profile Information</h1>
+    <form action="/app/users/edit.php" method="post">
+
+        <label for="changeName">Name: </label>
+        <input type="text" name="changeName" id="changeName" placeholder="<?= $_SESSION['user']['name'] ?>" required>
+
+        <button type="submit">Save</button>
+
+    </form>
+
+    <form action="/app/users/edit.php" method="post">
+
+        <label for="changeEmail">Email: </label>
+        <input type="text" name="changeEmail" id="changeEmail" placeholder="<?= $_SESSION['user']['email'] ?>">
+
+        <button type="submit">Save</button>
+
+    </form>
 </section>

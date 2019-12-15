@@ -31,7 +31,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     // and redirects the user back to the register page 
     if ($user) {
         if ($user['email'] === $email) {
-            $_SESSION['errors'][] =  'This email is already taken';
+            $_SESSION['errors'][] = 'This email is already taken';
             redirect('/register.php');
         }
     }
