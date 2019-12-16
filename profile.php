@@ -16,7 +16,7 @@
         <p><?= $_SESSION['user']['bio'] ?><p>
     </section>
     <section class="editProfile">
-        <button><a href="/edit.php">edit</a></button>
+        <button><a href="/edit.php">Edit Profile</a></button>
     </section>
 </section>
 

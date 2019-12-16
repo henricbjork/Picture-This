@@ -1,15 +1,39 @@
 nav,
 .bottomNav {
-    border: 1px solid black;
+
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px; 
     width: 100%;
 }
 .bottomNav {
     position: fixed; 
     bottom: 0;
+    border-top: 1px solid lightgrey;
 }
 a {
     text-decoration: none;
+}
+.settingsButton {
+    transition: 300ms;
+}
+.settings {
+    position: fixed;
+    right: -135px;
+    display: flex;
+    flex-direction: column;
+    width: 135px;
+    background: #fff;
+    padding: 5px;
+    transition: ease-in-out 300ms;
+}
+.settings a {
+    padding: 5px;
+}
+.change {
+    right: 0;
+}
+.rotate {
+    transform: rotate(180deg)
 }

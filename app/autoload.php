@@ -19,3 +19,7 @@ $config = require __DIR__.'/config.php';
 
 // Setup the database connection.
 $pdo = new PDO($config['database_path']);
+
+// Defines the current URL in a variable. 
+// Is used in navigation
+ $currentUrl = $_SERVER['REQUEST_URI'];

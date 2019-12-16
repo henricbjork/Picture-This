@@ -40,7 +40,7 @@
     <form action="/app/users/edit.php" method="post">
 
         <label for="changeEmail">Email: </label>
-        <input type="text" name="changeEmail" id="changeEmail" placeholder="<?= $_SESSION['user']['email'] ?>">
+        <input type="text" name="changeEmail" id="changeEmail" placeholder="<?= $_SESSION['user']['email'] ?>" required>
 
         <button type="submit">Save</button>
 
