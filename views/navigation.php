@@ -6,6 +6,8 @@
             <a href="/index.php">Back</a>
         <?php elseif ($currentUrl === '/edit.php') : ?>
             <a href="/profile.php">Back</a>
+        <?php elseif ($currentUrl === '/settings.php') : ?>
+            <a href="/profile.php">Back</a>
         <?php endif; ?>
         <?php if (isset($_SESSION['user']) && $currentUrl === '/profile.php') : ?>
             <img class="settingsButton" src="/icons/settings.svg">
@@ -13,7 +15,7 @@
     </nav>
 
     <div class="settings">
-        <a href="#">Account Settings</a>
+        <a href="/settings.php">Account Settings</a>
         <a href="/../app/users/logout.php">Logout</a>
     </div>
 

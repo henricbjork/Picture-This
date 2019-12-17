@@ -23,11 +23,17 @@ function displayError()
     echo $_SESSION['errors'][0];
     unset($_SESSION['errors']);
 }
-// This function redirects the user back to login page
-// if the user tries to access the site without being logged in
-function authenticateUser() {
-    if (!isset($_SESSION['user'])) 
-    {
+
+/**
+ * This function redirects the user back to login page
+ * if the user tries to access the site without being 
+ * logged in
+ *
+ * @return void
+ */
+function authenticateUser()
+{
+    if (!isset($_SESSION['user'])) {
         redirect('/login.php');
     }
 }
