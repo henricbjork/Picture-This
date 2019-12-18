@@ -32,7 +32,6 @@ if (isset($_FILES['avatar'])) {
 
         $user = $secondStatement->fetch(PDO::FETCH_ASSOC);
 
-        $_SESSION['user']['avatar'] = $user['avatar'];
     }
 
     redirect('/edit.php');
@@ -61,8 +60,6 @@ if (isset($_POST['bio'])) {
     ]);
 
     $user = $secondStatement->fetch(PDO::FETCH_ASSOC);
-
-    $_SESSION['user']['bio'] = $user['bio'];
 
     redirect('/edit.php');
 }

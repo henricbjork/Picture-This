@@ -8,6 +8,8 @@
             <a href="/profile.php">Back</a>
         <?php elseif ($currentUrl === '/settings.php') : ?>
             <a href="/profile.php">Back</a>
+        <?php elseif ($currentUrl === '/upload.php') : ?>
+            <a href="/profile.php">Back</a>
         <?php endif; ?>
         <?php if (isset($_SESSION['user']) && $currentUrl === '/profile.php') : ?>
             <img class="settingsButton" src="/icons/settings.svg">

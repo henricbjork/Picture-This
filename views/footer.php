@@ -1,6 +1,6 @@
 <div class="bottomNav">
-    <a href="index.php">Home</a>
-    <a href="#">New Photo</a>
+    <a href="/index.php">Home</a>
+    <a href="/upload.php">New Photo</a>
     <a href="/profile.php">Profile</a>
 </div>
 

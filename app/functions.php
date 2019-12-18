@@ -48,3 +48,33 @@ function GUID()
 
     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 }
+function getUserById($id, $pdo) {
+
+    $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+
+    $statement->execute([
+        ':id' => $id,
+    ]);
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $user;
+    
+}
+
+function getPostsById($id, $pdo) {
+
+    $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id ORDER BY image DESC');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $id,
+    ]);
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $posts;
+}

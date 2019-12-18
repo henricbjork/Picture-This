@@ -1,6 +1,5 @@
 nav,
 .bottomNav {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -11,6 +10,7 @@ nav,
     position: fixed; 
     bottom: 0;
     border-top: 1px solid lightgrey;
+    background: #fff;
 }
 a {
     text-decoration: none;
