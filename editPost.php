@@ -2,8 +2,11 @@
 require __DIR__ . '/views/header.php';
 $user = getUserById($_SESSION['user']['id'], $pdo);
 $post = getPostbyId($_GET['id'], $pdo);
-
 ?>
+
+<?php if (isset($_SESSION['errors'][0])) : ?>
+    <?php displayError(); ?>
+<?php endif; ?>
 
 <div class="upload">
     <img src="/app/uploads/<?= $post['image'] ?>" alt="">
@@ -21,3 +24,7 @@ $post = getPostbyId($_GET['id'], $pdo);
         <button type=submit>Save</button>
     </form>
 </section>
+
+<form action="/app/users/deletePost.php?id=<?= $post['id']?>" method="post">
+        <button type="submit">Delete post</button>
+    </form>
