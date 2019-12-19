@@ -7,6 +7,10 @@ $user = getUserById($_SESSION['user']['id'], $pdo);
 $posts = getPostsById($_SESSION['user']['id'], $pdo);
 ?>
 
+<?php if (isset($_SESSION['errors'][0])) : ?>
+    <?php displayError(); ?>
+<?php endif; ?>
+
 <section class="profileContainer">
     <div class="avatarContainer">
         <?php if (!$user['avatar']) : ?>
@@ -32,11 +36,14 @@ $posts = getPostsById($_SESSION['user']['id'], $pdo);
                 <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar">
             </div>
             <p><?= $user['name'] ?></p>
+            <a href="editPost.php?id=<?= $post['id'] ?>">Edit Post</a>
         </div>
         <div class="upload">
             <img src="/app/uploads/<?= $post['image'] ?>" alt="">
         </div>
-        <p><?= $post['description'] ?></p>
+        <div class="description">
+            <p><?= $post['description'] ?></p>
+        </div>
     </section>
 <?php endforeach; ?>
 

@@ -48,7 +48,9 @@ function GUID()
 
     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 }
-function getUserById($id, $pdo) {
+
+function getUserById($id, $pdo)
+{
 
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
 
@@ -59,12 +61,12 @@ function getUserById($id, $pdo) {
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     return $user;
-    
 }
 
-function getPostsById($id, $pdo) {
+function getPostsById($id, $pdo)
+{
 
-    $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id ORDER BY image DESC');
+    $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id ORDER BY image ASC');
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -77,4 +79,28 @@ function getPostsById($id, $pdo) {
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     return $posts;
+}
+
+/**
+ * Gets one post from database to frontend, with id from database
+ * 
+ * @param integer $postId
+ * @param PDO $pdo
+ * @return array
+ */
+function getPostById(int $id, PDO $pdo): array {
+
+    $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':id' => $id
+    ]);
+
+    $post = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $post;
 }
