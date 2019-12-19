@@ -1,3 +1,12 @@
-.profilePictureHeader {
-    padding: 20px;
+.profileContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profileContainer h1,
+.profileContainer p {
+    max-width: 200px;
+    text-align: justify;
 }
