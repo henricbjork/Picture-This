@@ -9,7 +9,28 @@ if (isset($_GET['id'])) {
     $user_id = $_SESSION['user']['id'];
 
     // !! INSERTS LIKE TO DATABASE
-    $statement = $pdo->prepare('INSERT INTO post_likes (user, post) 
+    $statement = $pdo->prepare('SELECT * FROM post_likes WHERE user = :user_id AND post = :id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $user_id,
+        ':id' => $id,
+    ]);
+
+    $hasLiked = $statement->fetch(PDO::FETCH_ASSOC);
+    
+    if($hasLiked) {
+        $statement = $pdo->prepare('DELETE FROM post_likes WHERE user = :user_id AND post = :id');
+        $statement->execute([
+            ':user_id' => $user_id,
+            ':id' => $id,
+        ]);
+        redirect('/profile.php');
+    } else { 
+        $secondStatement = $pdo->prepare('INSERT INTO post_likes (user, post) 
         SELECT :user_id, :id
         FROM posts
         WHERE EXISTS(
@@ -22,14 +43,13 @@ if (isset($_GET['id'])) {
                 WHERE user = :user_id
                 AND post = :id)
                 LIMIT 1');
+    }
 
-    
-
-    if (!$statement) {
+    if (!$secondStatement) {
         die(var_dump($pdo->errorInfo()));
     }
 
-    $statement->execute([
+    $secondStatement->execute([
         ':user_id' => $user_id,
         ':id' => $id,
     ]);

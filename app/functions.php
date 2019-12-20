@@ -131,6 +131,7 @@ function getLikes(int $id, PDO $pdo): array
     GROUP BY posts.id
     ORDER BY posts.id ASC'
     );
+    
     if (!$secondStatement) {
         die(var_dump($pdo->errorInfo()));
     }
