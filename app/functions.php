@@ -65,8 +65,22 @@ function getUserById($id, $pdo)
 
 function getPostsById($id, $pdo)
 {
+    // $statement = $pdo->prepare(
+    //     'SELECT * FROM posts 
+    //      WHERE user_id = :user_id
+    //      ORDER BY posts.id ASC'
+    // );
 
-    $statement = $pdo->prepare('SELECT * FROM posts WHERE user_id = :user_id ORDER BY image ASC');
+    $statement = $pdo->prepare(
+        'SELECT posts.id, posts.image, posts.description, posts.user_id, 
+    COUNT(post_likes.id) AS likes 
+    FROM posts 
+    LEFT JOIN post_likes
+    ON posts.id = post_likes.post
+    WHERE user_id = :user_id 
+    GROUP BY posts.id
+    ORDER BY posts.id ASC'
+    );
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
@@ -88,7 +102,8 @@ function getPostsById($id, $pdo)
  * @param PDO $pdo
  * @return array
  */
-function getPostById(int $id, PDO $pdo): array {
+function getPostById(int $id, PDO $pdo): array
+{
 
     $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
 
@@ -103,4 +118,26 @@ function getPostById(int $id, PDO $pdo): array {
     $post = $statement->fetch(PDO::FETCH_ASSOC);
 
     return $post;
+}
+function getLikes(int $id, PDO $pdo): array
+{
+    $secondStatement = $pdo->prepare(
+        'SELECT posts.id, posts.image, posts.description, posts.user_id, 
+    COUNT(post_likes.id) AS likes 
+    FROM posts 
+    LEFT JOIN post_likes
+    ON posts.id = post_likes.post
+    WHERE user_id = :user_id 
+    GROUP BY posts.id
+    ORDER BY posts.id ASC'
+    );
+    if (!$secondStatement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+    $secondStatement->execute([
+        ':user_id' => $id,
+    ]);
+
+    $likes = $secondStatement->fetchAll(PDO::FETCH_ASSOC);
+    return $likes;
 }
