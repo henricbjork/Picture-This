@@ -5,6 +5,8 @@
 authenticateUser();
 $user = getUserById($_SESSION['user']['id'], $pdo);
 $posts = getPostsById($_SESSION['user']['id'], $pdo);
+$likes = getLikes($_SESSION['user']['id'], $pdo);
+
 ?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
@@ -40,6 +42,10 @@ $posts = getPostsById($_SESSION['user']['id'], $pdo);
         </div>
         <div class="upload">
             <img src="/app/uploads/<?= $post['image'] ?>" alt="">
+        </div>
+        <div class="like">
+            <a href="app/posts/like.php?id=<?= $post['id'] ?>">Like</a>
+            <p><?= $post['likes'] ?> people like this</p>
         </div>
         <div class="description">
             <p><?= $post['description'] ?></p>
