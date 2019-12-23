@@ -10,7 +10,7 @@ $post = getPostbyId($_GET['id'], $pdo);
 <?php endif; ?>
 
 <div class="upload">
-    <img src="/app/uploads/<?= $post['image'] ?>" alt="">
+    <img src="/app/uploads/<?= $post['image'] ?>" alt="post image" loading="lazy">
 </div>
 <div class="description">
     <p><?= $post['description'] ?></p>
