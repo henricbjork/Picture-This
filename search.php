@@ -2,8 +2,8 @@
 
 <?php
 authenticateUser();
-if(isset($_GET['search'])) {
-$users = searchForUser($_GET['search'], $pdo);
+if (isset($_GET['search'])) {
+    $users = searchForUser($_GET['search'], $pdo);
 }
 ?>
 
@@ -20,9 +20,10 @@ $users = searchForUser($_GET['search'], $pdo);
 <?php if (isset($users)) : ?>
     <ul>
         <?php foreach ($users as $user) : ?>
+
             <li>
                 <img src="app/avatar/<?= $user['avatar'] ?>">
-                <a href="#"><?= $user['name'] ?></a>
+                <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
             </li>
         <?php endforeach; ?>
     </ul>
