@@ -1,11 +1,9 @@
-<?php require __DIR__ . '/views/header.php' ?>
-
-
 <?php
+require __DIR__ . '/views/header.php';
+
 authenticateUser();
-$user = getUserById($_SESSION['user']['id'], $pdo);
-$posts = getPostsById($_SESSION['user']['id'], $pdo);
-$likes = getLikes($_SESSION['user']['id'], $pdo);
+$user = getUserById((int) $_GET['id'], $pdo);
+$posts = getPostsById((int) $_GET['id'], $pdo);
 
 ?>
 
@@ -16,9 +14,9 @@ $likes = getLikes($_SESSION['user']['id'], $pdo);
 <section class="profileContainer">
     <div class="avatarContainer">
         <?php if (!$user['avatar']) : ?>
-            <img class="avatar" src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg">
+            <img class="avatar" alt="user avatar" src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" loading="lazy">
         <?php endif; ?>
-        <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
+        <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>" loading="lazy">
     </div>
     <div class="userName">
         <h1><?= $user['name'] ?></h1>
@@ -26,25 +24,38 @@ $likes = getLikes($_SESSION['user']['id'], $pdo);
     <section class="bioContainer">
         <p><?= $user['bio'] ?><p>
     </section>
-    <section class="editProfile">
-        <button><a href="/edit.php">Edit Profile</a></button>
-    </section>
+    <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
+        <section class="editProfile">
+            <button><a href="/edit.php">Edit Profile</a></button>
+        </section>
+    <?php endif; ?>
 </section>
+
+<?php if ($_SESSION['user']['id'] === $_GET['id']) : ?>
+    <img class="settingsButton" src="/icons/settings.svg">
+<?php endif; ?>
 
 <?php foreach ($posts as $post) : ?>
     <section class="uploadContainer">
         <div class="author">
             <div class="authorImage">
-                <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar">
+                <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar" loading="lazy">
             </div>
             <p><?= $user['name'] ?></p>
-            <a href="editPost.php?id=<?= $post['id'] ?>">Edit Post</a>
+            <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
+                <a href="editPost.php?id=<?= $post['id'] ?>">Edit Post</a>
+            <?php endif; ?>
         </div>
         <div class="upload">
-            <img src="/app/uploads/<?= $post['image'] ?>" alt="">
+            <img src="/app/uploads/<?= $post['image'] ?>" alt="post image" loading="lazy">
         </div>
         <div class="like">
-            <a href="app/posts/like.php?id=<?= $post['id'] ?>">Like</a>
+            <!-- <a href="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>">Like</a> -->
+            <form action="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>" method="get">
+                <input type="hidden" name="post_id" id="post_id" value="<?= $post['id'] ?>">
+                <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>">
+                <button type="submit">Like</button>
+            </form>
             <p><?= $post['likes'] ?> people like this</p>
         </div>
         <div class="description">

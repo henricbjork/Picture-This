@@ -16,8 +16,11 @@ if (!function_exists('redirect')) {
         exit;
     }
 }
-// This function echoes errors when they occur
-// and then removes the message on reload.
+/**
+ * Displays errors if there are any
+ *
+ * @return void
+ */
 function displayError()
 {
     echo $_SESSION['errors'][0];
@@ -37,9 +40,11 @@ function authenticateUser()
         redirect('/login.php');
     }
 }
-// This function returns a Globally Unique IDentifier
-// that is used to save uploaded image files with an unique
-// ID
+/**
+ * Returns a GUID
+ *
+ * @return void
+ */
 function GUID()
 {
     if (function_exists('com_create_guid') === true) {
@@ -48,10 +53,15 @@ function GUID()
 
     return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 }
-
-function getUserById($id, $pdo)
+/**
+ * Returns user from database
+ *
+ * @param integer $id
+ * @param PDO $pdo
+ * @return array
+ */
+function getUserById(int $id, PDO $pdo)
 {
-
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
 
     $statement->execute([
@@ -60,17 +70,22 @@ function getUserById($id, $pdo)
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $user;
+    // IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
+    if (!$id) {
+        redirect('/profile.php?id=' . $_SESSION['user']['id']);
+    } else {
+        return $user;
+    }
 }
-
-function getPostsById($id, $pdo)
+/**
+ * Fetches all posts by a user from the database
+ *
+ * @param integer $id
+ * @param PDO $pdo
+ * @return array
+ */
+function getPostsById(int $id, PDO $pdo): array
 {
-    // $statement = $pdo->prepare(
-    //     'SELECT * FROM posts 
-    //      WHERE user_id = :user_id
-    //      ORDER BY posts.id ASC'
-    // );
-
     $statement = $pdo->prepare(
         'SELECT posts.id, posts.image, posts.description, posts.user_id, 
     COUNT(post_likes.id) AS likes 
@@ -79,7 +94,7 @@ function getPostsById($id, $pdo)
     ON posts.id = post_likes.post
     WHERE user_id = :user_id 
     GROUP BY posts.id
-    ORDER BY posts.id ASC'
+    ORDER BY posts.upload_date DESC'
     );
 
     if (!$statement) {
@@ -104,7 +119,6 @@ function getPostsById($id, $pdo)
  */
 function getPostById(int $id, PDO $pdo): array
 {
-
     $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
 
     if (!$statement) {
@@ -119,26 +133,35 @@ function getPostById(int $id, PDO $pdo): array
 
     return $post;
 }
-function getLikes(int $id, PDO $pdo): array
+/**
+ * Fetches users id, name and avatar image from database from search query
+ *
+ * @param string $search
+ * @param PDO $pdo
+ * @return array
+ */
+function searchForUser(string $search, PDO $pdo): array
 {
-    $secondStatement = $pdo->prepare(
-        'SELECT posts.id, posts.image, posts.description, posts.user_id, 
-    COUNT(post_likes.id) AS likes 
-    FROM posts 
-    LEFT JOIN post_likes
-    ON posts.id = post_likes.post
-    WHERE user_id = :user_id 
-    GROUP BY posts.id
-    ORDER BY posts.id ASC'
-    );
-    
-    if (!$secondStatement) {
+    $search = filter_var($search, FILTER_SANITIZE_STRING);
+
+    $statement = $pdo->prepare('SELECT id, name, avatar FROM users WHERE name LIKE :search');
+
+    $search = '%' . $search . '%';
+
+    if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }
-    $secondStatement->execute([
-        ':user_id' => $id,
+
+    $statement->execute([
+        ':search' => $search,
     ]);
 
-    $likes = $secondStatement->fetchAll(PDO::FETCH_ASSOC);
-    return $likes;
+    $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!$users) {
+        $_SESSION['errors'][] = 'No users found.';
+        redirect('/search.php');
+    } else {
+        return $users;
+    }
 }

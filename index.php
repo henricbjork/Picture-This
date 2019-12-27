@@ -1,10 +1,24 @@
-<?php require __DIR__ . '/views/header.php' ?>
+<?php 
+require __DIR__ . '/views/header.php';
+authenticateUser(); 
 
-<?php authenticateUser(); ?>
+$statement = $pdo->query('SELECT * FROM posts WHERE user_id = 25');
+
+if(!$statement) {
+        die(var_dump($pdo->errorInfo()));
+}
+
+$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($posts as $post) {
+        echo $post['image'];
+}
+
+?>
 
 <section class="startPage">
 
-        <p contenteditable="true">This is the feed.</p>
+        <p>This is the feed.</p>
 
 </section>
 

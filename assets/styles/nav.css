@@ -16,23 +16,30 @@ a {
     text-decoration: none;
 }
 .settingsButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
     transition: 300ms;
 }
 .settings {
     position: fixed;
+    top: 30px;
     right: -135px;
     display: flex;
     flex-direction: column;
     width: 135px;
     background: #fff;
     padding: 5px;
+    opacity: 0;
     transition: ease-in-out 300ms;
+    text-align: right;
 }
 .settings a {
     padding: 5px;
 }
 .change {
     right: 0;
+    opacity: 1;
 }
 .rotate {
     transform: rotate(180deg)
