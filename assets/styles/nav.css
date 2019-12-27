@@ -16,10 +16,14 @@ a {
     text-decoration: none;
 }
 .settingsButton {
+    position: absolute;
+    top: 5px;
+    right: 5px;
     transition: 300ms;
 }
 .settings {
     position: fixed;
+    top: 30px;
     right: -135px;
     display: flex;
     flex-direction: column;
@@ -27,6 +31,7 @@ a {
     background: #fff;
     padding: 5px;
     transition: ease-in-out 300ms;
+    text-align: right;
 }
 .settings a {
     padding: 5px;

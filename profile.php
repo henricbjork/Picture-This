@@ -1,10 +1,10 @@
-<?php require __DIR__ . '/views/header.php' ?>
-
-
 <?php
+require __DIR__ . '/views/header.php';
+
 authenticateUser();
-$user = getUserById($_SESSION['user']['id'], $pdo);
-$posts = getPostsById($_SESSION['user']['id'], $pdo);
+$user = getUserById((int) $_GET['id'], $pdo);
+$posts = getPostsById((int) $_GET['id'], $pdo);
+
 ?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
@@ -24,10 +24,16 @@ $posts = getPostsById($_SESSION['user']['id'], $pdo);
     <section class="bioContainer">
         <p><?= $user['bio'] ?><p>
     </section>
-    <section class="editProfile">
-        <button><a href="/edit.php">Edit Profile</a></button>
-    </section>
+    <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
+        <section class="editProfile">
+            <button><a href="/edit.php">Edit Profile</a></button>
+        </section>
+    <?php endif; ?>
 </section>
+
+<?php if ($_SESSION['user']['id'] === $_GET['id']) : ?>
+    <img class="settingsButton" src="/icons/settings.svg">
+<?php endif; ?>
 
 <?php foreach ($posts as $post) : ?>
     <section class="uploadContainer">
@@ -36,13 +42,15 @@ $posts = getPostsById($_SESSION['user']['id'], $pdo);
                 <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar" loading="lazy">
             </div>
             <p><?= $user['name'] ?></p>
-            <a href="editPost.php?id=<?= $post['id'] ?>">Edit Post</a>
+            <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
+                <a href="editPost.php?id=<?= $post['id'] ?>">Edit Post</a>
+            <?php endif; ?>
         </div>
         <div class="upload">
             <img src="/app/uploads/<?= $post['image'] ?>" alt="post image" loading="lazy">
         </div>
         <div class="like">
-            <a href="app/posts/like.php?id=<?= $post['id'] ?>">Like</a>
+            <a href="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>">Like</a>
             <p><?= $post['likes'] ?> people like this</p>
         </div>
         <div class="description">

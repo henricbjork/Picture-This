@@ -60,9 +60,8 @@ function GUID()
  * @param PDO $pdo
  * @return array
  */
-function getUserById(int $id, PDO $pdo) : array
+function getUserById(int $id, PDO $pdo)
 {
-
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
 
     $statement->execute([
@@ -71,7 +70,12 @@ function getUserById(int $id, PDO $pdo) : array
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    return $user;
+    // IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
+    if (!$id) {
+        redirect('/profile.php?id=' . $_SESSION['user']['id']);
+    } else {
+        return $user;
+    }
 }
 /**
  * Fetches all posts by a user from the database
@@ -80,7 +84,7 @@ function getUserById(int $id, PDO $pdo) : array
  * @param PDO $pdo
  * @return array
  */
-function getPostsById(int $id, PDO $pdo) : array
+function getPostsById(int $id, PDO $pdo): array
 {
     $statement = $pdo->prepare(
         'SELECT posts.id, posts.image, posts.description, posts.user_id, 
@@ -115,7 +119,6 @@ function getPostsById(int $id, PDO $pdo) : array
  */
 function getPostById(int $id, PDO $pdo): array
 {
-
     $statement = $pdo->prepare('SELECT * FROM posts WHERE id = :id');
 
     if (!$statement) {
@@ -137,8 +140,9 @@ function getPostById(int $id, PDO $pdo): array
  * @param PDO $pdo
  * @return array
  */
-function searchForUser(string $search, PDO $pdo) : array
+function searchForUser(string $search, PDO $pdo): array
 {
+    $search = filter_var($search, FILTER_SANITIZE_STRING);
 
     $statement = $pdo->prepare('SELECT id, name, avatar FROM users WHERE name LIKE :search');
 
@@ -156,6 +160,7 @@ function searchForUser(string $search, PDO $pdo) : array
 
     if (!$users) {
         $_SESSION['errors'][] = 'No users found.';
+        redirect('/search.php');
     } else {
         return $users;
     }
