@@ -94,7 +94,7 @@ function getPostsById(int $id, PDO $pdo): array
     ON posts.id = post_likes.post
     WHERE user_id = :user_id 
     GROUP BY posts.id
-    ORDER BY posts.id ASC'
+    ORDER BY posts.upload_date DESC'
     );
 
     if (!$statement) {

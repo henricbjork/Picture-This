@@ -50,7 +50,12 @@ $posts = getPostsById((int) $_GET['id'], $pdo);
             <img src="/app/uploads/<?= $post['image'] ?>" alt="post image" loading="lazy">
         </div>
         <div class="like">
-            <a href="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>">Like</a>
+            <!-- <a href="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>">Like</a> -->
+            <form action="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>" method="get">
+                <input type="hidden" name="post_id" id="post_id" value="<?= $post['id'] ?>">
+                <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>">
+                <button type="submit">Like</button>
+            </form>
             <p><?= $post['likes'] ?> people like this</p>
         </div>
         <div class="description">

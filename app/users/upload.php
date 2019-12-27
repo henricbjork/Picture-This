@@ -17,7 +17,11 @@ if (isset($_FILES['image'], $_POST['description'])) {
     } else {
         move_uploaded_file($image['tmp_name'], $destination);
 
-        $statement = $pdo->prepare('INSERT INTO posts (image, user_id, description) VALUES (:image, :user_id, :description)');
+        $statement = $pdo->prepare(
+            'INSERT INTO posts 
+            (image, user_id, description) 
+            VALUES (:image, :user_id, :description)'
+        );
 
         if (!$statement) {
             die(var_dump($pdo->errorInfo()));
@@ -26,7 +30,7 @@ if (isset($_FILES['image'], $_POST['description'])) {
         $statement->execute([
             ':image' => $fileName,
             ':user_id' => $id,
-            ':description' => $description, 
+            ':description' => $description,
         ]);
 
         $secondStatement = $pdo->prepare('SELECT image, description FROM posts WHERE user_id = :user_id');
@@ -36,7 +40,6 @@ if (isset($_FILES['image'], $_POST['description'])) {
         ]);
 
         $images = $secondStatement->fetchAll(PDO::FETCH_ASSOC);
-
     }
 
     redirect('/upload.php');

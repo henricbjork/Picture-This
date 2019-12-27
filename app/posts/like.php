@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-if (isset($_GET['post_id'])) {
+if (isset($_GET['post_id'], $_GET['user_id'])) {
     $id = $_GET['post_id'];
     $user_id = $_SESSION['user']['id'];
+    
 
     // !! INSERTS LIKE TO DATABASE
     $statement = $pdo->prepare('SELECT * FROM post_likes WHERE user = :user_id AND post = :id');
@@ -28,7 +29,7 @@ if (isset($_GET['post_id'])) {
             ':user_id' => $user_id,
             ':id' => $id,
         ]);
-        redirect('/profile.php?id=' . $_GET['id']);
+        redirect('/profile.php?id=' . $_GET['user_id']);
     } else { 
         $secondStatement = $pdo->prepare('INSERT INTO post_likes (user, post) 
         SELECT :user_id, :id
@@ -55,4 +56,4 @@ if (isset($_GET['post_id'])) {
     ]);
 
 }
-redirect('/profile.php?id='.$_GET['id']);
+redirect('/profile.php?id=' . $_GET['user_id']);
