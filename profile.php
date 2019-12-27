@@ -5,8 +5,6 @@
 authenticateUser();
 $user = getUserById($_SESSION['user']['id'], $pdo);
 $posts = getPostsById($_SESSION['user']['id'], $pdo);
-$likes = getLikes($_SESSION['user']['id'], $pdo);
-
 ?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
