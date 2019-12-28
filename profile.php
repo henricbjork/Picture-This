@@ -4,7 +4,10 @@ require __DIR__ . '/views/header.php';
 authenticateUser();
 $user = getUserById((int) $_GET['id'], $pdo);
 $posts = getPostsById((int) $_GET['id'], $pdo);
-
+// IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
+if (!$_GET['id']) {
+    redirect('/profile.php?id=' . $_SESSION['user']['id']);
+}
 ?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>

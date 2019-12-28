@@ -70,12 +70,8 @@ function getUserById(int $id, PDO $pdo)
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
-    if (!$id) {
-        redirect('/profile.php?id=' . $_SESSION['user']['id']);
-    } else {
         return $user;
-    }
+  
 }
 /**
  * Fetches all posts by a user from the database
@@ -165,3 +161,4 @@ function searchForUser(string $search, PDO $pdo): array
         return $users;
     }
 }
+
