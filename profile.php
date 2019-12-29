@@ -2,6 +2,7 @@
 require __DIR__ . '/views/header.php';
 require __DIR__ . '/views/settings.php';
 authenticateUser();
+
 $user = getUserById((int) $_GET['id'], $pdo);
 $posts = getPostsById((int) $_GET['id'], $pdo);
 
@@ -16,6 +17,8 @@ if (isset($_SESSION['errors'][0])) {
     displayError(); 
 }
 ?>
+
+<?php if (isset($user['id'])) : ?>
 
 <section class="profileContainer">
     <div class="avatarContainer">
@@ -72,3 +75,9 @@ if (isset($_SESSION['errors'][0])) {
 <?php endforeach; ?>
 
 <?php require __DIR__ . '/views/footer.php' ?>
+
+<?php else: ?>
+
+    <?php redirect('/default.php') ?>
+
+<?php endif; ?>

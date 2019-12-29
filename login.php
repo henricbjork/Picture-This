@@ -1,10 +1,10 @@
 <?php require __DIR__ . '/views/header.php' ?>
 
-<?php if (isset($_SESSION['messages'][0])) : ?>
-    <p><?php displayMessage(); ?></p>
-<?php endif; ?>
-
 <section class="logIn">
+    
+    <?php if (isset($_SESSION['messages'][0])) : ?>
+        <p><?php displayMessage(); ?></p>
+    <?php endif; ?>
 
     <h1>Log in</h1>
     <form action="app/users/login.php" method="post">
