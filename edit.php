@@ -12,7 +12,7 @@
             <?php if (isset($user['avatar'])) : ?>
                 <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
             <?php else : ?>
-                <img class="avatar" alt="user avatar" src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" loading="lazy">
+                <img class="avatar" alt="user avatar" src="app/avatar/default-profile.jpg" loading="lazy">
             <?php endif; ?>
         </div>
         <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
