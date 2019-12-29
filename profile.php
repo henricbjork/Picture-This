@@ -25,14 +25,16 @@ if (!$_GET['id']) {
         <h1><?= $user['name'] ?></h1>
     </div>
     <section class="bioContainer">
-        <p><?= $user['bio'] ?><p>
+        <?php if (isset($user['bio'])) : ?>
+            <p><?= $user['bio'] ?><p>
+                <?php endif; ?>
     </section>
     <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
         <section class="editProfile">
             <button><a href="/edit.php">Edit Profile</a></button>
         </section>
     <?php else : ?>
-        <button type="submit"><a href="app/users/follow.php?id=<?= $_GET['id']?>">Follow</a></button>
+        <button type="submit"><a href="app/users/follow.php?id=<?= $_GET['id'] ?>">Follow</a></button>
     <?php endif; ?>
 </section>
 

@@ -9,7 +9,11 @@
 <section class="editContainer">
     <section class="editAvatar">
         <div class="avatarContainer">
-            <img class="avatar" src="app/avatar/<?= $user['avatar']?>">
+            <?php if (isset($user['avatar'])) : ?>
+                <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
+            <?php else : ?>
+                <img class="avatar" alt="user avatar" src="https://t4.ftcdn.net/jpg/00/64/67/27/240_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg" loading="lazy">
+            <?php endif; ?>
         </div>
         <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
             <label for="avatar">Change profile picture</label>
@@ -21,7 +25,11 @@
     <section class="editBio">
         <form action="/app/users/edit.php" method="post">
             <label for="bio">Edit your bio: </label>
-            <textarea name="bio" id="bio" cols="30" rows="5"><?= $user['bio'] ?></textarea>
+            <?php if (isset($user['bio'])) : ?>
+                <textarea name="bio" id="bio" cols="30" rows="5" maxlength="180"><?= $user['bio'] ?></textarea>
+            <?php else : ?>
+                <textarea name="bio" id="bio" cols="30" rows="5" maxlength="180"></textarea>
+            <?php endif; ?>
             <button type="submit">Save</button>
         </form>
     </section>
@@ -47,5 +55,3 @@
 
     </form>
 </section>
-
-<?php die(var_dump($_SESSION['user'])); ?>
