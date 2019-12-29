@@ -28,3 +28,5 @@ if (isset($_GET['search'])) {
         <?php endforeach; ?>
     </ul>
 <?php endif; ?>
+
+<?php require __DIR__ . '/views/footer.php' ?>

@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/views/header.php';
+authenticateUser();
 $user = getUserById($_SESSION['user']['id'], $pdo);
 if (!isset($user['avatar'])) {
     $user['avatar'] = 'default-profile.jpg';
@@ -14,7 +15,7 @@ if (!isset($user['avatar'])) {
 <section class="editContainer">
     <section class="editAvatar">
         <div class="avatarContainer">
-                <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
+            <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
         </div>
         <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
             <label for="avatar">Change profile picture</label>
@@ -56,3 +57,5 @@ if (!isset($user['avatar'])) {
 
     </form>
 </section>
+
+<?php require __DIR__ . '/views/footer.php' ?>

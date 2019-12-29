@@ -14,6 +14,8 @@ if (isset($_FILES['image'], $_POST['description'])) {
 
     if ($image['type'] != 'image/jpeg') {
         $_SESSION['errors'][0] = 'File type not supported. Only jpeg files accepted.';
+    } elseif ($image['size'] >= 5097152) {
+        $_SESSION['errors'][0] = 'The uploaded file exceeded the file size limit.';
     } else {
         move_uploaded_file($image['tmp_name'], $destination);
 
@@ -40,6 +42,8 @@ if (isset($_FILES['image'], $_POST['description'])) {
         ]);
 
         $images = $secondStatement->fetchAll(PDO::FETCH_ASSOC);
+
+        $_SESSION['messages'][0] = 'Your post has been uploaded!';
     }
 
     redirect('/upload.php');

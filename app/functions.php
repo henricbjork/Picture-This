@@ -26,6 +26,16 @@ function displayError()
     echo $_SESSION['errors'][0];
     unset($_SESSION['errors']);
 }
+/**
+ * Displays messages if there are any
+ *
+ * @return void
+ */
+function displayMessage()
+{
+    echo $_SESSION['messages'][0];
+    unset($_SESSION['messages']);
+}
 
 /**
  * This function redirects the user back to login page

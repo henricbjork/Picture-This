@@ -4,6 +4,7 @@ require __DIR__ . '/views/settings.php';
 authenticateUser();
 $user = getUserById((int) $_GET['id'], $pdo);
 $posts = getPostsById((int) $_GET['id'], $pdo);
+
 // IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
 if (!$_GET['id']) {
     redirect('/profile.php?id=' . $_SESSION['user']['id']);
@@ -11,11 +12,10 @@ if (!$_GET['id']) {
 if (!isset($user['avatar'])){
     $user['avatar'] = 'default-profile.jpg';
 }
+if (isset($_SESSION['errors'][0])) { 
+    displayError(); 
+}
 ?>
-
-<?php if (isset($_SESSION['errors'][0])) : ?>
-    <?php displayError(); ?>
-<?php endif; ?>
 
 <section class="profileContainer">
     <div class="avatarContainer">
@@ -50,7 +50,7 @@ if (!isset($user['avatar'])){
             </div>
             <p><?= $user['name'] ?></p>
             <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
-                <a href="editPost.php?id=<?= $post['id'] ?>">Edit Post</a>
+                <a href="editPost.php?id=<?= $post['id'] ?>&user=<?= $_GET['id']?>">Edit Post</a>
             <?php endif; ?>
         </div>
         <div class="upload">

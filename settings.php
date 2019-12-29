@@ -16,3 +16,5 @@
         <button type="submit">Save</button>
     </form>
 </section>
+
+<?php require __DIR__ . '/views/footer.php' ?>
