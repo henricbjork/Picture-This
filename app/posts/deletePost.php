@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
-$user = getUserById($_SESSION['user']['id'], $pdo);
+$user = getUserById((int) $_SESSION['user']['id'], $pdo);
 $post = getPostbyId((int) $_GET['id'], $pdo);
 
 if ($user['id'] === $post['user_id']) {

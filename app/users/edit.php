@@ -13,6 +13,8 @@ if (isset($_FILES['avatar'])) {
 
     if ($avatar['type'] != 'image/jpeg') {
         $_SESSION['errors'][0] = 'File type not supported. Only jpeg files accepted.';
+    } elseif ($image['size'] >= 2097152) {
+        $_SESSION['errors'][0] = 'The uploaded file exceeded the file size limit.';
     } else {
         move_uploaded_file($avatar['tmp_name'], $destination);
         $statement = $pdo->prepare('UPDATE users SET avatar = :avatar WHERE id = :id');
@@ -42,7 +44,6 @@ if (isset($_POST['bio'])) {
     $id = $_SESSION['user']['id'];
 
     $statement = $pdo->prepare('UPDATE users SET bio = :bio WHERE id = :id');
-
 
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));

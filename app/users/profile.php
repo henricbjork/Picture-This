@@ -1,17 +1,17 @@
 <?php
 
-declare(strict_types=1);
+// declare(strict_types=1);
 
-require __DIR__ . '/../autoload.php';
+// require __DIR__ . '/../autoload.php';
 
-// !! FETCHES THE USERS NAME
+// // !! FETCHES THE USERS NAME
 
-$statement = $pdo->prepare('SELECT name FROM users WHERE id = :id');
+// $statement = $pdo->prepare('SELECT name FROM users WHERE id = :id');
 
-$statement->execute([
-    ':id' => $id,
-]);
+// $statement->execute([
+//     ':id' => $id,
+// ]);
 
-$user = $statement->fetch(PDO::FETCH_ASSOC);
+// $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-$_SESSION['user']['name'] = $user['name'];
+// $_SESSION['user']['name'] = $user['name'];

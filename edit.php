@@ -1,15 +1,23 @@
-<?php require __DIR__ . '/views/header.php' ?>
-<?php $user = getUserById($_SESSION['user']['id'], $pdo); ?>
-
+<?php
+require __DIR__ . '/views/header.php';
+authenticateUser();
+$user = getUserById($_SESSION['user']['id'], $pdo);
+if (!isset($user['avatar'])) {
+    $user['avatar'] = 'default-profile.jpg';
+}
+?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
-    <?php displayError(); ?>
+    <div class="errorContainer">
+        <p class="errorMessage"><?php displayError(); ?><p>
+    </div>
 <?php endif; ?>
+
 
 <section class="editContainer">
     <section class="editAvatar">
         <div class="avatarContainer">
-            <img class="avatar" src="app/avatar/<?= $user['avatar']?>">
+            <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
         </div>
         <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
             <label for="avatar">Change profile picture</label>
@@ -21,7 +29,11 @@
     <section class="editBio">
         <form action="/app/users/edit.php" method="post">
             <label for="bio">Edit your bio: </label>
-            <textarea name="bio" id="bio" cols="30" rows="5"><?= $user['bio'] ?></textarea>
+            <?php if (isset($user['bio'])) : ?>
+                <textarea name="bio" id="bio" cols="30" rows="5" maxlength="180"><?= $user['bio'] ?></textarea>
+            <?php else : ?>
+                <textarea name="bio" id="bio" cols="30" rows="5" maxlength="180"></textarea>
+            <?php endif; ?>
             <button type="submit">Save</button>
         </form>
     </section>
@@ -48,4 +60,4 @@
     </form>
 </section>
 
-<?php die(var_dump($_SESSION['user'])); ?>
+<?php require __DIR__ . '/views/footer.php' ?>

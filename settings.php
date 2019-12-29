@@ -3,7 +3,9 @@
 <?php authenticateUser(); ?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
-    <p><?php displayError(); ?></p>
+    <div class="errorContainer">
+        <p class="errorMessage"><?php displayError(); ?></p>
+    </div>
 <?php endif; ?>
 
 <section class="changePasswordContainer">
@@ -16,3 +18,5 @@
         <button type="submit">Save</button>
     </form>
 </section>
+
+<?php require __DIR__ . '/views/footer.php' ?>

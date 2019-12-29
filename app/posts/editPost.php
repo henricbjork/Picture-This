@@ -43,6 +43,7 @@ if (isset($_FILES['image'])) {
             ':image' => $fileName,
             ':id' => $id,
         ]);
+
     }
 }
 redirect('/profile.php');

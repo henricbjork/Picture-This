@@ -26,6 +26,16 @@ function displayError()
     echo $_SESSION['errors'][0];
     unset($_SESSION['errors']);
 }
+/**
+ * Displays messages if there are any
+ *
+ * @return void
+ */
+function displayMessage()
+{
+    echo $_SESSION['messages'][0];
+    unset($_SESSION['messages']);
+}
 
 /**
  * This function redirects the user back to login page
@@ -60,7 +70,7 @@ function GUID()
  * @param PDO $pdo
  * @return array
  */
-function getUserById(int $id, PDO $pdo)
+function getUserById(int $id, PDO $pdo) 
 {
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
 
@@ -70,12 +80,7 @@ function getUserById(int $id, PDO $pdo)
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
-    if (!$id) {
-        redirect('/profile.php?id=' . $_SESSION['user']['id']);
-    } else {
-        return $user;
-    }
+    return $user;
 }
 /**
  * Fetches all posts by a user from the database
@@ -132,6 +137,38 @@ function getPostById(int $id, PDO $pdo): array
     $post = $statement->fetch(PDO::FETCH_ASSOC);
 
     return $post;
+}
+function getAllPostsById(int $id, PDO $pdo)
+{
+    // $statement = $pdo->prepare(
+    //     'SELECT * FROM posts
+    //     LEFT JOIN follow
+    //     ON posts.user_id = follow.user_id
+    //     OR posts.user_id = follow.fu_id
+    //     WHERE follow.user_id = :user_id
+    //     GROUP BY posts.id
+    //     ORDER BY upload_date desc'
+    // );
+    $statement = $pdo->prepare(
+        'SELECT *,
+	COUNT(post_likes.id) AS likes 
+	FROM posts
+	LEFT JOIN post_likes
+    ON posts.id = post_likes.post
+	LEFT JOIN follow
+	ON posts.user_id = follow.user_id
+	OR posts.user_id = follow.fu_id
+	WHERE follow.user_id = :user_id
+	GROUP BY posts.id
+	ORDER BY posts.upload_date desc'
+    );
+    $statement->execute([
+        ':user_id' => $id,
+    ]);
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $posts;
 }
 /**
  * Fetches users id, name and avatar image from database from search query

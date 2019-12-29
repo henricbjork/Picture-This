@@ -5,6 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 $_SESSION['errors'] = [];
+$_SESSION['messages'] = [];
 
 if (isset($_POST['email'], $_POST['password'])) {
     $name = $_POST['name'];
@@ -47,6 +48,8 @@ if (isset($_POST['email'], $_POST['password'])) {
         ':email' => $email,
         ':password' => $hashedPassword,
     ]);
+
+    $_SESSION['messages'][0] = 'Your account has been successfully created! Log in to start uploading photos.';
 }
 
 redirect('/index.php');

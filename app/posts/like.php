@@ -7,7 +7,7 @@ require __DIR__ . '/../autoload.php';
 if (isset($_GET['post_id'], $_GET['user_id'])) {
     $id = $_GET['post_id'];
     $user_id = $_SESSION['user']['id'];
-    
+
 
     // !! INSERTS LIKE TO DATABASE
     $statement = $pdo->prepare('SELECT * FROM post_likes WHERE user = :user_id AND post = :id');
@@ -22,15 +22,15 @@ if (isset($_GET['post_id'], $_GET['user_id'])) {
     ]);
 
     $hasLiked = $statement->fetch(PDO::FETCH_ASSOC);
-    
-    if($hasLiked) {
+
+    if ($hasLiked) {
         $statement = $pdo->prepare('DELETE FROM post_likes WHERE user = :user_id AND post = :id');
         $statement->execute([
             ':user_id' => $user_id,
             ':id' => $id,
         ]);
         redirect('/profile.php?id=' . $_GET['user_id']);
-    } else { 
+    } else {
         $secondStatement = $pdo->prepare('INSERT INTO post_likes (user, post) 
         SELECT :user_id, :id
         FROM posts
@@ -54,6 +54,5 @@ if (isset($_GET['post_id'], $_GET['user_id'])) {
         ':user_id' => $user_id,
         ':id' => $id,
     ]);
-
 }
 redirect('/profile.php?id=' . $_GET['user_id']);

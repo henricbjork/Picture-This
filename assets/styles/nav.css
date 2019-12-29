@@ -6,6 +6,10 @@ nav,
     padding: 10px; 
     width: 100%;
 }
+nav {
+    border-bottom: 1px solid lightgrey;
+    background: #fff;
+}
 .bottomNav {
     position: fixed; 
     bottom: 0;
@@ -43,4 +47,15 @@ a {
 }
 .rotate {
     transform: rotate(180deg)
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 650px) {
+    .bottomNav {
+        width: 648px;
+    }
+    .settingsButton {
+        position: relative;
+        top: 5px;
+        left: 618px;      
+    }
 }

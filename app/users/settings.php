@@ -36,7 +36,7 @@ if (isset($_POST['currentPassword'], $_POST['newPassword'])) {
 
         $_SESSION['user'] = $user;
     } else {
-        $_SESSION['errors'][] = 'Incorrect password';
+        $_SESSION['errors'][0] = 'Incorrect password';
     }
 
 }
