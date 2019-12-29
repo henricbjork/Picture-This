@@ -3,10 +3,31 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 input {
     border: none;
     border-bottom: 1px solid black;
 }
 input::placeholder {
     color: black;
+}
+.errorContainer {
+    border: 2px solid red;
+}
+.messageContainer {
+    border: 2px solid green;
+}
+
+@media only screen and (min-width: 650px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    main {
+        background: white;
+        border: 1px solid #e6e6e6;
+        width: 650px;
+    }
 }

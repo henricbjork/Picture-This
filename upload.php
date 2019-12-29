@@ -1,14 +1,20 @@
-<?php 
+<?php
 require __DIR__ . '/views/header.php';
-authenticateUser();  
+authenticateUser();
 $posts = getPostsById($_SESSION['user']['id'], $pdo);
-if (isset($_SESSION['errors'][0])) {
-    displayError();
-}
-if (isset($_SESSION['messages'][0])) {
-    displayMessage();
-}
 ?>
+
+<?php if (isset($_SESSION['errors'][0])) : ?>
+    <div class="errorContainer">
+        <p class="errorMessage"><?php displayError(); ?></p>
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_SESSION['messages'][0])) : ?>
+    <div class="messageContainer">
+        <p class="message"><?php displayMessage(); ?></p>
+    </div>
+<?php endif; ?>
 
 <section class="uploadContainer">
     <form action="/app/posts/upload.php" method="post" enctype="multipart/form-data">

@@ -6,6 +6,12 @@ $posts = getAllPostsById($_SESSION['user']['id'], $pdo);
 require __DIR__ . '/views/navigation.php';
 ?>
 
+<?php if (isset($_SESSION['errors'][0])) : ?>
+    <div class="errorContainer">
+        <p class="errorMessage"><?php displayError(); ?></p>
+    </div>
+<?php endif; ?>
+
 <?php foreach ($posts as $post) : ?>
     <section class="uploadContainer">
         <div class="author">

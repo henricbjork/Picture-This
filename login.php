@@ -1,10 +1,12 @@
 <?php require __DIR__ . '/views/header.php' ?>
 
 <section class="logIn">
-    
+
     <?php if (isset($_SESSION['messages'][0])) : ?>
-        <p><?php displayMessage(); ?></p>
-    <?php endif; ?>
+            <div class="messageContainer">
+                <p class="message"><?php displayMessage(); ?></p>
+            </div>
+        <?php endif; ?>
 
     <h1>Log in</h1>
     <form action="app/users/login.php" method="post">
@@ -15,8 +17,11 @@
         <button type="submit">Log in</button><br>
 
         <?php if (isset($_SESSION['errors'][0])) : ?>
-            <p><?php displayError(); ?></p>
+            <div class="errorContainer">
+                <p class="errorMessage"><?php displayError(); ?></p>
+            </div>
         <?php endif; ?>
+
 
     </form>
     <a href="/register.php">Create Account</a>

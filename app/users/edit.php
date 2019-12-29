@@ -45,7 +45,6 @@ if (isset($_POST['bio'])) {
 
     $statement = $pdo->prepare('UPDATE users SET bio = :bio WHERE id = :id');
 
-
     if (!$statement) {
         die(var_dump($pdo->errorInfo()));
     }

@@ -70,7 +70,7 @@ function GUID()
  * @param PDO $pdo
  * @return array
  */
-function getUserById(int $id, PDO $pdo)
+function getUserById(int $id, PDO $pdo) 
 {
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
 

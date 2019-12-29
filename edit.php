@@ -7,10 +7,12 @@ if (!isset($user['avatar'])) {
 }
 ?>
 
-
 <?php if (isset($_SESSION['errors'][0])) : ?>
-    <?php displayError(); ?>
+    <div class="errorContainer">
+        <p class="errorMessage"><?php displayError(); ?><p>
+    </div>
 <?php endif; ?>
+
 
 <section class="editContainer">
     <section class="editAvatar">

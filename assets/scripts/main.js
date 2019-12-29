@@ -8,8 +8,3 @@ settingsButton.addEventListener('click', event => {
 settingsButton.addEventListener('click', event => {
   settingsButton.classList.toggle("rotate");
 });
-// likeButtons.forEach(likeButton => {
-//   likeButton.addEventListener('click', event => {
-//     event.preventDefault();
-//   })
-// })

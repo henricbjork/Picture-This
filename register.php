@@ -9,16 +9,16 @@
         <input type="text" name="name" id="name" required><br>
 
         <?php if (isset($_SESSION['errors'][0])) : ?>
+            <div class="errorContainer">
+                <p class="errorMessage"><?php displayError(); ?></p>
+            </div>
+        <?php endif; ?>
 
-            <p><?php displayError(); ?><p>
-
-                <?php endif; ?>
-
-                <label for="email">Email: </label><br>
-                <input type="email" name="email" id="email" required><br>
-                <label for="password">Password: </label><br>
-                <input type="password" name="password" id="password" required><br>
-                <button type="submit">Register</button>
+        <label for="email">Email: </label><br>
+        <input type="email" name="email" id="email" required><br>
+        <label for="password">Password: </label><br>
+        <input type="password" name="password" id="password" required><br>
+        <button type="submit">Register</button>
     </form>
 
     <a href="/login.php">Already have an account?</a>

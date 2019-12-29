@@ -14,7 +14,9 @@ if (isset($_GET['search'])) {
 </form>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
-    <?php displayError(); ?>
+    <div class="errorContainer">
+        <p class="errorMessage"><?php displayError(); ?></p>
+    </div>
 <?php endif; ?>
 
 <?php if (isset($users)) : ?>
