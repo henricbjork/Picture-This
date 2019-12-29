@@ -5,7 +5,7 @@
 <?php $posts = getPostsById($_SESSION['user']['id'], $pdo); ?>
 
 <section class="uploadContainer">
-    <form action="/app/users/upload.php" method="post" enctype="multipart/form-data">
+    <form action="/app/posts/upload.php" method="post" enctype="multipart/form-data">
         <label for="image">Choose Image</label>
         <input type="file" name="image" id="image" required accept="image/jpeg, image/jpg">
         <label for="description">Add description</label>

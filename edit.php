@@ -1,5 +1,10 @@
-<?php require __DIR__ . '/views/header.php' ?>
-<?php $user = getUserById($_SESSION['user']['id'], $pdo); ?>
+<?php
+require __DIR__ . '/views/header.php';
+$user = getUserById($_SESSION['user']['id'], $pdo);
+if (!isset($user['avatar'])) {
+    $user['avatar'] = 'default-profile.jpg';
+}
+?>
 
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
@@ -9,11 +14,7 @@
 <section class="editContainer">
     <section class="editAvatar">
         <div class="avatarContainer">
-            <?php if (isset($user['avatar'])) : ?>
                 <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>">
-            <?php else : ?>
-                <img class="avatar" alt="user avatar" src="app/avatar/default-profile.jpg" loading="lazy">
-            <?php endif; ?>
         </div>
         <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
             <label for="avatar">Change profile picture</label>

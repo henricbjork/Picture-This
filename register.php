@@ -24,5 +24,3 @@
     <a href="/login.php">Already have an account?</a>
 
 </section>
-
-<?php require __DIR__ . '/views/footer.php'; ?>

@@ -3,6 +3,7 @@ require __DIR__ . '/views/header.php';
 authenticateUser();
 $user = getUserById((int) $_SESSION['user']['id'], $pdo);
 $posts = getAllPostsById($_SESSION['user']['id'], $pdo);
+require __DIR__ . '/views/navigation.php';
 ?>
 
 <?php foreach ($posts as $post) : ?>
@@ -12,7 +13,7 @@ $posts = getAllPostsById($_SESSION['user']['id'], $pdo);
                 <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar" loading="lazy">
             </div>
             <p><?= $user['name'] ?></p>
-            
+
         </div>
         <div class="upload">
             <img src="/app/uploads/<?= $post['image'] ?>" alt="post image" loading="lazy">
@@ -33,9 +34,9 @@ $posts = getAllPostsById($_SESSION['user']['id'], $pdo);
 <?php endforeach; ?>
 
 <section class="startPage">
-        <?php if (empty($posts)) : ?>
-                <p>There are no posts right now. <a href="/upload.php">Upload a photo!</a></p>
-        <?php endif; ?>
+    <?php if (empty($posts)) : ?>
+        <p>There are no posts right now. <a href="/upload.php">Upload a photo!</a></p>
+    <?php endif; ?>
 </section>
 
 <?php require __DIR__ . '/views/footer.php' ?>

@@ -1,12 +1,15 @@
 <?php
 require __DIR__ . '/views/header.php';
-
+require __DIR__ . '/views/settings.php';
 authenticateUser();
 $user = getUserById((int) $_GET['id'], $pdo);
 $posts = getPostsById((int) $_GET['id'], $pdo);
 // IF NO ID IS GIVEN IN URL, REDIRECTS TO LOGGED IN USERS
 if (!$_GET['id']) {
     redirect('/profile.php?id=' . $_SESSION['user']['id']);
+}
+if (!isset($user['avatar'])){
+    $user['avatar'] = 'default-profile.jpg';
 }
 ?>
 
@@ -16,10 +19,7 @@ if (!$_GET['id']) {
 
 <section class="profileContainer">
     <div class="avatarContainer">
-        <?php if (!$user['avatar']) : ?>
-            <img class="avatar" alt="user avatar" src="app/avatar/default-profile.jpg" loading="lazy">
-        <?php endif; ?>
-        <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>" loading="lazy">
+            <img class="avatar" src="app/avatar/<?= $user['avatar'] ?>" loading="lazy">
     </div>
     <div class="userName">
         <h1><?= $user['name'] ?></h1>
