@@ -31,6 +31,8 @@ if (!$_GET['id']) {
         <section class="editProfile">
             <button><a href="/edit.php">Edit Profile</a></button>
         </section>
+    <?php else : ?>
+        <button type="submit"><a href="app/users/follow.php?id=<?= $_GET['id']?>">Follow</a></button>
     <?php endif; ?>
 </section>
 

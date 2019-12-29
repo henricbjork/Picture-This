@@ -70,8 +70,7 @@ function getUserById(int $id, PDO $pdo)
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-        return $user;
-  
+    return $user;
 }
 /**
  * Fetches all posts by a user from the database
@@ -129,6 +128,38 @@ function getPostById(int $id, PDO $pdo): array
 
     return $post;
 }
+function getAllPostsById(int $id, PDO $pdo)
+{
+    // $statement = $pdo->prepare(
+    //     'SELECT * FROM posts
+    //     LEFT JOIN follow
+    //     ON posts.user_id = follow.user_id
+    //     OR posts.user_id = follow.fu_id
+    //     WHERE follow.user_id = :user_id
+    //     GROUP BY posts.id
+    //     ORDER BY upload_date desc'
+    // );
+    $statement = $pdo->prepare(
+        'SELECT *,
+	COUNT(post_likes.id) AS likes 
+	FROM posts
+	LEFT JOIN post_likes
+    ON posts.id = post_likes.post
+	LEFT JOIN follow
+	ON posts.user_id = follow.user_id
+	OR posts.user_id = follow.fu_id
+	WHERE follow.user_id = :user_id
+	GROUP BY posts.id
+	ORDER BY posts.upload_date desc'
+    );
+    $statement->execute([
+        ':user_id' => $id,
+    ]);
+
+    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $posts;
+}
 /**
  * Fetches users id, name and avatar image from database from search query
  *
@@ -161,4 +192,3 @@ function searchForUser(string $search, PDO $pdo): array
         return $users;
     }
 }
-

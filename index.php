@@ -2,8 +2,7 @@
 require __DIR__ . '/views/header.php';
 authenticateUser();
 $user = getUserById((int) $_SESSION['user']['id'], $pdo);
-$posts = getPostsById((int) $_SESSION['user']['id'], $pdo);
-
+$posts = getAllPostsById($_SESSION['user']['id'], $pdo);
 ?>
 
 <?php foreach ($posts as $post) : ?>
