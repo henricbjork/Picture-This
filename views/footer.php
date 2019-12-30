@@ -1,10 +1,9 @@
-
-<?php $user = getUserById($_SESSION['user']['id'], $pdo);?>
+<?php $user = getUserById($_SESSION['user']['id'], $pdo); ?>
 
 <div class="bottomNav">
-    <a href="/index.php">Feed</a>
-    <a href="/upload.php">New Photo</a>
-    <a href="/profile.php?id=<?= $user['id'] ?>">Profile</a>
+    <a href="/index.php"><img class="homeIcon" src="icons/home.svg" alt="home icon"></a>
+    <a href="/upload.php"><img class="uploadIcon" src="icons/upload.svg" alt="upload icon"></a>
+    <a href="/profile.php?id=<?= $user['id'] ?>"><img class="profileIcon" src="icons/profile.svg" alt="profile icon"></a>
 </div>
 </main>
 <script src="/../assets/scripts/main.js"></script>

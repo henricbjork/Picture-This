@@ -1,7 +1,4 @@
 .startPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 100vh;
+    margin: 70px 0px 70px 0px;
+    min-height: 100vh;
 }

@@ -149,19 +149,33 @@ function getAllPostsById(int $id, PDO $pdo)
     //     GROUP BY posts.id
     //     ORDER BY upload_date desc'
     // );
+
     $statement = $pdo->prepare(
-        'SELECT *,
-	COUNT(post_likes.id) AS likes 
+    'SELECT 
+    posts.id AS post_id,
+    image,
+    description,
+    posts.user_id,
+    upload_date,
+    fu_id,
+    follow.user_id,
+    users.id,
+    name,
+    avatar,
+	COUNT(post_likes.id ) AS likes 
 	FROM posts
 	LEFT JOIN post_likes
-    ON posts.id = post_likes.post
+    ON post_id = post_likes.post
 	LEFT JOIN follow
 	ON posts.user_id = follow.user_id
 	OR posts.user_id = follow.fu_id
+    INNER JOIN users
+    ON posts.user_id = users.id
 	WHERE follow.user_id = :user_id
 	GROUP BY posts.id
 	ORDER BY posts.upload_date desc'
     );
+
     $statement->execute([
         ':user_id' => $id,
     ]);
