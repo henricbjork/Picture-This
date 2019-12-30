@@ -24,7 +24,12 @@ if (isset($_GET['search'])) {
         <?php foreach ($users as $user) : ?>
 
             <li>
-                <img src="app/avatar/<?= $user['avatar'] ?>">
+                <?php if (!isset($user['avatar'])) : ?>
+                    <img src="app/avatar/default-profile.jpg" alt="user avatar">
+                <?php else : ?>
+                    <img src="app/avatar/<?= $user['avatar'] ?>">
+                <?php endif; ?>
+
                 <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
             </li>
         <?php endforeach; ?>

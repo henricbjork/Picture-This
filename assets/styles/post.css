@@ -1,19 +1,19 @@
 .uploadContainer {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 .authorContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px;
+    padding: 14px;
 }
 .author {
     display: flex;
     align-items: center;
 }
 .authorImage {
-    height: 40px;
-    width: 40px;
+    height: 32px;
+    width: 32px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -21,8 +21,7 @@
     height: 100%;
     width: 100%;
 }
-.authorName,
-.descName {
+.authorName {
     margin-left: 5px;
 }
 .upload {
@@ -33,7 +32,6 @@
 .upload img {
     width: 100%;
     height: 100%;
-    
 }
 .upload p {
     width: 100%;
@@ -42,11 +40,10 @@
 .heartIcon {
     width: 25px;
     height: 25px;
-    margin: 5px 0px 0px 5px;
 }
 .like {
-    margin-left: 5px;
+    padding: 8px 14px 5px 14px;
 }
 .description {
-    margin-top: 5px;
+    padding-left: 16px;
 }

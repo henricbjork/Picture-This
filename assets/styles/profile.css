@@ -1,5 +1,9 @@
+.profilePageContainer {
+    margin: 0px 0px 70px 0px;
+    min-height: 100vh;
+}
 .profileContainer {
-    margin: 20px 0px 20px 0px;
+    margin: 40px 0px 20px 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,4 +13,17 @@
 .profileContainer p {
     max-width: 200px;
     text-align: justify;
+}
+.userName {
+    padding: 10px;
+}
+.editProfile button {
+    margin-top: 20px;
+    border: 1px solid #e6e6e6;
+    width: 200px;
+    height: 34px;
+    border-radius: 4px;
+    background: transparent;
+    font-weight: bold;
+    font-size: 14px;
 }
