@@ -29,7 +29,7 @@ require __DIR__ . '/views/navigation.php';
                     <p class="authorName"><a href="/profile.php?id=<?= $post['author_id'] ?>"><?= $post['name'] ?></a></p>
                 </div>
                 <?php if ($post['author_id'] === $_SESSION['user']['id']) : ?>
-                    <a class="editButton" href="editPost.php?id=<?= $post['post_id'] ?>&user=<?= $user['id'] ?>"><img class="editIcon" src="icons/edit.svg" alt="edit button"></a>
+                    <a href="editPost.php?id=<?= $post['post_id'] ?>&user=<?= $user['id'] ?>"><img class="editIcon" src="icons/edit.svg" alt="edit button"></a>
                 <?php endif; ?>
             </div>
             <div class="upload">

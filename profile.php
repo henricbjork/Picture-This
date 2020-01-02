@@ -66,7 +66,7 @@ if (!isset($user['avatar'])) {
                         <p class="authorName"><?= $user['name'] ?></p>
                     </div>
                     <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
-                        <a class="editButton" href="editPost.php?id=<?= $post['id'] ?>&user=<?= $_GET['id'] ?>"><img class="editIcon" src="icons/edit.svg" alt="edit button"></a>
+                        <a href="editPost.php?id=<?= $post['id'] ?>&user=<?= $_GET['id'] ?>"><img class="editIcon" src="icons/edit.svg" alt="edit button"></a>
                     <?php endif; ?>
                 </div>
                 <div class="upload">
