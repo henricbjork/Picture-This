@@ -1,3 +1,7 @@
+.editIcon {
+    width: 15px;
+    height: 15px;
+}
 .editPostContainer {
     display: flex;
     margin: 20px 0px 70px 0px;
