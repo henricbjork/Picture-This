@@ -55,4 +55,4 @@ if (isset($_GET['post_id'], $_GET['user_id'])) {
         ':id' => $id,
     ]);
 }
-redirect('/profile.php?id=' . $_GET['user_id']);
+redirect('/profile.php?id=' . $_GET['author']);

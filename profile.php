@@ -52,7 +52,7 @@ if (!isset($user['avatar'])) {
                     <a href="/edit.php"><button>Edit Profile</button></a>
                 </section>
             <?php else : ?>
-                <button type="submit"><a href="app/users/follow.php?id=<?= $_GET['id'] ?>">Follow</a></button>
+                <a href="app/users/follow.php?id=<?= $_GET['id'] ?>"><button class="followButton" type="submit">Follow</button></a>
             <?php endif; ?>
         </section>
 
@@ -66,7 +66,7 @@ if (!isset($user['avatar'])) {
                         <p class="authorName"><?= $user['name'] ?></p>
                     </div>
                     <?php if ($_GET['id'] === $_SESSION['user']['id']) : ?>
-                        <a class="editButton" href="editPost.php?id=<?= $post['id'] ?>&user=<?= $_GET['id'] ?>">Edit</a>
+                        <a class="editButton" href="editPost.php?id=<?= $post['id'] ?>&user=<?= $_GET['id'] ?>"><img class="editIcon" src="icons/edit.svg" alt="edit button"></a>
                     <?php endif; ?>
                 </div>
                 <div class="upload">

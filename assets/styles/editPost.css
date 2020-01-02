@@ -1,0 +1,18 @@
+.editPostContainer {
+    display: flex;
+    margin: 20px 0px 70px 0px;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+}
+.editPostContainer form input {
+    border: none;
+    display: flex;
+    margin-top: 10px;
+}
+.editPostContainer form textarea {
+    margin-bottom: 10px;
+}
+.editPostContainer form button {
+    margin: 0px;
+}

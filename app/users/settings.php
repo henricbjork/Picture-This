@@ -33,8 +33,11 @@ if (isset($_POST['currentPassword'], $_POST['newPassword'])) {
             ':id' => $id,
             ':password' => $hashedPassword,
         ]);
-
+        
         $_SESSION['user'] = $user;
+
+        $_SESSION['messages'][0] = 'Password change successful!';
+        
     } else {
         $_SESSION['errors'][0] = 'Incorrect password';
     }

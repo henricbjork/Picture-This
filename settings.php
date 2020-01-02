@@ -8,6 +8,12 @@
     </div>
 <?php endif; ?>
 
+<?php if (isset($_SESSION['messages'][0])) : ?>
+    <div class="messageContainer">
+        <p class="message"><?php displayMessage(); ?></p>
+    </div>
+<?php endif; ?>
+
 <section class="changePasswordContainer">
     <h1>Change Password</h1>
     <form action="app/users/settings.php" method="post">
