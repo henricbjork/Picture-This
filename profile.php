@@ -51,7 +51,7 @@ if (!isset($user['avatar'])) {
                     <a href="/edit.php"><button>Edit Profile</button></a>
                 </section>
             <?php else : ?>
-                <a href="app/users/follow.php?id=<?= $_GET['id'] ?>"><button class="followButton" type="submit"></button></a>
+                <a href="app/users/follow.php?id=<?= $_GET['id'] ?>"><button class="followButton" type="submit">Follow</button></a>
             <?php endif; ?>
         </section>
 
