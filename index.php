@@ -37,9 +37,9 @@ require __DIR__ . '/views/navigation.php';
             </div>
             <div class="like">
                 <a href="app/posts/like.php?post_id=<?= $post['post_id'] ?>&user_id=<?= $user['id'] ?>&author=<?= $post['author_id'] ?>"><img class="heartIcon" src="/icons/heart.svg" alt="heart icon"></a>
-                <!-- <form action="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>" method="get">
-                    <input type="hidden" name="post_id" id="post_id" value="<?= $post['id'] ?>">
-                    <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>">
+                <!-- <form action="app/posts/like.php?post_id=<?= $post['post_id'] ?>&user_id=<?= $user['id'] ?>" method="get">
+                    <input type="hidden" name="post_id" id="post_id" value="<?= $post['post_id'] ?>">
+                    <input type="hidden" name="user_id" id="user_id" value="<?= $user['user_id'] ?>">
                     <button type="submit">Like</button>
                 </form> -->
                 <?php if ($post['likes'] != 0) : ?>

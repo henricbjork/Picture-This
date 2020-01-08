@@ -44,10 +44,11 @@ if ($_GET['user'] != $_SESSION['user']['id']) {
         <textarea name="description" id="description" cols="30" rows="10"><?= $post['description'] ?></textarea><br>
         <button class="editPostButton" type=submit>Save</button>
     </form>
+    <form class="deleteForm" action="/app/posts/deletePost.php?id=<?= $post['id'] ?>" method="post">
+        <button class="deleteButton" type="submit">Delete post</button>
+    </form>
 </section>
 
-<form action="/app/posts/deletePost.php?id=<?= $post['id'] ?>" method="post">
-    <button type="submit">Delete post</button>
-</form>
+
 
 <?php require __DIR__ . '/views/footer.php' ?>

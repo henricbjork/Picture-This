@@ -152,7 +152,7 @@ function getAllPostsById(int $id, PDO $pdo)
     users.id AS author_id, 
     name,
     avatar,
-	COUNT(post_likes.id ) AS likes 
+	COUNT(post_likes.id) AS likes 
 	FROM posts
 	LEFT JOIN post_likes
     ON post_id = post_likes.post
@@ -172,8 +172,9 @@ function getAllPostsById(int $id, PDO $pdo)
     ]);
 
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+    
     return $posts;
+    
 }
 /**
  * Fetches users id, name and avatar image from database from search query

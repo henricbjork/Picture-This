@@ -14,7 +14,6 @@ if (!isset($user['avatar'])) {
     $user['avatar'] = 'default-profile.jpg';
 }
 
-
 ?>
 
 <section class="profilePageContainer">
@@ -52,7 +51,7 @@ if (!isset($user['avatar'])) {
                     <a href="/edit.php"><button>Edit Profile</button></a>
                 </section>
             <?php else : ?>
-                <a href="app/users/follow.php?id=<?= $_GET['id'] ?>"><button class="followButton" type="submit">Follow</button></a>
+                <a href="app/users/follow.php?id=<?= $_GET['id'] ?>"><button class="followButton" type="submit"></button></a>
             <?php endif; ?>
         </section>
 
@@ -73,12 +72,12 @@ if (!isset($user['avatar'])) {
                     <img src="/app/uploads/<?= $post['image'] ?>" alt="post image">
                 </div>
                 <div class="like">
-                    <a href="app/posts/like.php?post_id=<?= $post['id'] ?>&user_id=<?= $user['id'] ?>"><img class="heartIcon" src="/icons/heart.svg" alt="heart icon"></a>
-                    <!-- <form action="app/posts/like.php?post_id=<?= $post['id'] ?>&id=<?= $user['id'] ?>" method="get">
-                    <input type="hidden" name="post_id" id="post_id" value="<?= $post['id'] ?>">
-                    <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>">
-                    <button type="submit">Like</button>
-                </form> -->
+                    <a href="app/posts/like.php?post_id=<?= $post['id'] ?>&user_id=<?= $user['id'] ?>&author=<?= $post['user_id']?>"><img class="heartIcon" src="/icons/heart.svg" alt="heart icon"></a>
+                    <!-- <form action="app/posts/like.php?post_id=<?= $post['id'] ?>&user_id=<?= $user['id'] ?>" method="get">
+                        <input type="hidden" name="post_id" id="post_id" value="<?= $post['id'] ?>">
+                        <input type="hidden" name="user_id" id="user_id" value="<?= $user['id'] ?>">
+                        <button type="submit">Like</button>
+                    </form> -->
                     <?php if ($post['likes'] != 0) : ?>
                         <p><?= $post['likes'] ?> likes this</p>
                     <?php endif; ?>

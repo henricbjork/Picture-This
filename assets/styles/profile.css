@@ -17,21 +17,7 @@
 .userName {
     padding: 10px;
 }
-.editProfile button,
-.followButton,
-.editPostButton,
-.uploadButton,
-.passwordChangeButton,
-.editButton {
-    margin-top: 20px;
-    border: 1px solid #e6e6e6;
-    width: 200px;
-    height: 34px;
-    border-radius: 4px;
-    background: transparent;
-    font-weight: bold;
-    font-size: 14px;
-}
+
 .followButton {
     width: 100px;
 }

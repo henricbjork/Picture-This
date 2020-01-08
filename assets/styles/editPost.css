@@ -7,6 +7,7 @@
     margin: 20px 0px 70px 0px;
     justify-content: center;
     text-align: center;
+    flex-direction: column;
     padding: 10px;
 }
 .editPostContainer form input {
@@ -19,4 +20,12 @@
 }
 .editPostContainer form button {
     margin: 0px;
+}
+.deleteForm {
+    margin-top: 20px;
+}
+.deleteButton {
+    border: 2px solid #eb5757;
+    background-color: #f39595;
+    color: white;
 }

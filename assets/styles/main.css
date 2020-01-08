@@ -17,6 +17,7 @@ a {
 input {
     border: none;
     border-bottom: 1px solid black;
+    font-size: 14px;
 }
 input::placeholder {
     color: #000;
@@ -44,7 +45,24 @@ textarea {
     border: 2px solid #27AE60;
     background-color: #86D1A6;
 }
-
+.editProfile button,
+.followButton,
+.editPostButton,
+.uploadButton,
+.passwordChangeButton,
+.editButton,
+.register form button,
+.logIn form button,
+.deleteButton {
+    margin-top: 20px;
+    border: 1px solid #e6e6e6;
+    width: 200px;
+    height: 34px;
+    border-radius: 4px;
+    background: transparent;
+    font-weight: bold;
+    font-size: 14px;
+}
 @media only screen and (min-width: 650px) {
     body {
         display: flex;
