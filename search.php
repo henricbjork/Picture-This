@@ -7,10 +7,9 @@ if (isset($_GET['search'])) {
 }
 ?>
 
-<form action="/search.php" method="get">
-    <label for="search">Search for users: </label>
-    <input type="text" name="search" id="search">
-    <button type="submit">Search</button>
+<form class="searchForm" action="/search.php" method="get">
+    <input class="searchField" type="text" name="search" id="search" placeholder="Search">
+    <button type="submit"><img class="searchIcon" src="/icons/search.svg" alt="search icon"></button>
 </form>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>
@@ -20,17 +19,24 @@ if (isset($_GET['search'])) {
 <?php endif; ?>
 
 <?php if (isset($users)) : ?>
-    <ul>
+    <ul class="searchResult">
         <?php foreach ($users as $user) : ?>
-
             <li>
                 <?php if (!isset($user['avatar'])) : ?>
-                    <img src="app/avatar/default-profile.jpg" alt="user avatar">
+                    <div class="author">
+                        <div class="authorImage">
+                            <img class="searchAvatar" src="app/avatar/default-profile.jpg" alt="user avatar">
+                        </div>
+                        <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
+                    </div>
                 <?php else : ?>
-                    <img src="app/avatar/<?= $user['avatar'] ?>">
-                <?php endif; ?>
-
-                <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
+                    <div class="author">
+                        <div class="authorImage">
+                            <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar">
+                        <?php endif; ?>
+                        </div>
+                        <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
+                    </div>
             </li>
         <?php endforeach; ?>
     </ul>

@@ -17,13 +17,11 @@
 .userName {
     padding: 10px;
 }
-.editProfile button {
-    margin-top: 20px;
-    border: 1px solid #e6e6e6;
-    width: 200px;
-    height: 34px;
-    border-radius: 4px;
-    background: transparent;
-    font-weight: bold;
-    font-size: 14px;
+
+.followButton {
+    width: 100px;
+}
+.editButton {
+    margin: 0 0 15px 0;
+    width: 100px;
 }

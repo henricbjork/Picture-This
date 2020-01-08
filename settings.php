@@ -8,6 +8,12 @@
     </div>
 <?php endif; ?>
 
+<?php if (isset($_SESSION['messages'][0])) : ?>
+    <div class="messageContainer">
+        <p class="message"><?php displayMessage(); ?></p>
+    </div>
+<?php endif; ?>
+
 <section class="changePasswordContainer">
     <h1>Change Password</h1>
     <form action="app/users/settings.php" method="post">
@@ -15,7 +21,7 @@
         <input type="password" name="currentPassword" id="currentPassword" required><br>
         <label for="newPassword">New Password: </label><br>
         <input type="password" name="newPassword" id="newPassword" required><br>
-        <button type="submit">Save</button>
+        <button class="passwordChangeButton" type="submit">Save</button>
     </form>
 </section>
 

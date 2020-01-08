@@ -3,10 +3,10 @@
 <section class="logIn">
 
     <?php if (isset($_SESSION['messages'][0])) : ?>
-            <div class="messageContainer">
-                <p class="message"><?php displayMessage(); ?></p>
-            </div>
-        <?php endif; ?>
+        <div class="messageContainer">
+            <p class="message"><?php displayMessage(); ?></p>
+        </div>
+    <?php endif; ?>
 
     <h1>Log in</h1>
     <form action="app/users/login.php" method="post">
@@ -14,7 +14,9 @@
         <input type="email" name="email" id="email" required><br>
         <label for="password">Password: </label><br>
         <input type="password" name="password" id="password" required><br>
-        <button type="submit">Log in</button><br>
+        <div class="logInButton">
+            <button type="submit">Log in</button>
+        </div>
 
         <?php if (isset($_SESSION['errors'][0])) : ?>
             <div class="errorContainer">
@@ -22,7 +24,6 @@
             </div>
         <?php endif; ?>
 
-
     </form>
-    <a href="/register.php">Create Account</a>
+    <a class="registerLoginLink" href="/register.php">Create Account</a>
 </section>

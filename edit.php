@@ -22,7 +22,7 @@ if (!isset($user['avatar'])) {
         <form action="/app/users/edit.php" method="post" enctype="multipart/form-data">
             <label for="avatar">Change profile picture</label>
             <input style="visibility:hidden;" type="file" name="avatar" id="avatar" required accept="image/jpeg, image/jpg">
-            <button type=submit>Save</button>
+            <button class="editButton" type=submit>Save</button>
         </form>
     </section>
 
@@ -34,7 +34,7 @@ if (!isset($user['avatar'])) {
             <?php else : ?>
                 <textarea name="bio" id="bio" cols="30" rows="5" maxlength="180"></textarea>
             <?php endif; ?>
-            <button type="submit">Save</button>
+            <button class="editButton" type="submit">Save</button>
         </form>
     </section>
 </section>
@@ -46,7 +46,7 @@ if (!isset($user['avatar'])) {
         <label for="changeName">Name: </label>
         <input type="text" name="changeName" id="changeName" placeholder="<?= $user['name'] ?>" required>
 
-        <button type="submit">Save</button>
+        <button class="editButton" type="submit">Save</button>
 
     </form>
 
@@ -55,7 +55,7 @@ if (!isset($user['avatar'])) {
         <label for="changeEmail">Email: </label>
         <input type="text" name="changeEmail" id="changeEmail" placeholder="<?= $user['email'] ?>" required>
 
-        <button type="submit">Save</button>
+        <button class="editButton" type="submit">Save</button>
 
     </form>
 </section>

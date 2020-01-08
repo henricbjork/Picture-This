@@ -140,16 +140,6 @@ function getPostById(int $id, PDO $pdo): array
 }
 function getAllPostsById(int $id, PDO $pdo)
 {
-    // $statement = $pdo->prepare(
-    //     'SELECT * FROM posts
-    //     LEFT JOIN follow
-    //     ON posts.user_id = follow.user_id
-    //     OR posts.user_id = follow.fu_id
-    //     WHERE follow.user_id = :user_id
-    //     GROUP BY posts.id
-    //     ORDER BY upload_date desc'
-    // );
-
     $statement = $pdo->prepare(
     'SELECT 
     posts.id AS post_id,
@@ -159,10 +149,10 @@ function getAllPostsById(int $id, PDO $pdo)
     upload_date,
     fu_id,
     follow.user_id,
-    users.id,
+    users.id AS author_id, 
     name,
     avatar,
-	COUNT(post_likes.id ) AS likes 
+	COUNT(post_likes.id) AS likes 
 	FROM posts
 	LEFT JOIN post_likes
     ON post_id = post_likes.post
@@ -172,6 +162,7 @@ function getAllPostsById(int $id, PDO $pdo)
     INNER JOIN users
     ON posts.user_id = users.id
 	WHERE follow.user_id = :user_id
+    OR posts.user_id = :user_id
 	GROUP BY posts.id
 	ORDER BY posts.upload_date desc'
     );
@@ -181,8 +172,9 @@ function getAllPostsById(int $id, PDO $pdo)
     ]);
 
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+    
     return $posts;
+    
 }
 /**
  * Fetches users id, name and avatar image from database from search query

@@ -1,10 +1,25 @@
-const settingsButton = document.querySelector('.settingsButton');
-const settings = document.querySelector('.settings');
-const likeButtons = document.querySelectorAll('.like')
+const settingsButton = document.querySelector(".settingsButton");
+const settings = document.querySelector(".settings");
+const followButton = document.querySelector(".followButton");
 
-settingsButton.addEventListener('click', event => {
-    settings.classList.toggle('change')
+console.log(settingsButton)
+followButton.textContent = 'Follow';
+
+followButton.addEventListener("click", event => {
+  followButton.textContent = "Unfollow";
 });
-settingsButton.addEventListener('click', event => {
+
+if (settingsButton !== null) {
+
+settingsButton.addEventListener("click", event => {
+  settings.classList.toggle("change");
+});
+
+}
+
+settingsButton.addEventListener("click", event => {
   settingsButton.classList.toggle("rotate");
 });
+
+
+

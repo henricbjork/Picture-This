@@ -49,10 +49,11 @@ if (isset($_GET['post_id'], $_GET['user_id'])) {
     if (!$secondStatement) {
         die(var_dump($pdo->errorInfo()));
     }
-
+    
     $secondStatement->execute([
         ':user_id' => $user_id,
         ':id' => $id,
     ]);
+
 }
-redirect('/profile.php?id=' . $_GET['user_id']);
+redirect('/profile.php?id=' . $_GET['author']);

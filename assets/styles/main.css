@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+main {
+    min-height: 100vh;
+}
 p, a {
     font-size: 14px;
 }
@@ -14,17 +17,52 @@ a {
 input {
     border: none;
     border-bottom: 1px solid black;
+    font-size: 14px;
 }
 input::placeholder {
-    color: black;
+    color: #000;
+}
+textarea {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    height: 50px;
+    padding: 3px;
+}
+.errorContainer,
+.messageContainer {
+    border-radius: 3px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    font-size: 30px;
+    color: #FFF;
 }
 .errorContainer {
-    border: 2px solid red;
+    border: 2px solid #EB5757;
+    background-color: #F39595;
 }
 .messageContainer {
-    border: 2px solid green;
+    border: 2px solid #27AE60;
+    background-color: #86D1A6;
 }
-
+.editProfile button,
+.followButton,
+.editPostButton,
+.uploadButton,
+.passwordChangeButton,
+.editButton,
+.register form button,
+.logIn form button,
+.deleteButton {
+    margin-top: 20px;
+    border: 1px solid #e6e6e6;
+    width: 200px;
+    height: 34px;
+    border-radius: 4px;
+    background: transparent;
+    font-weight: bold;
+    font-size: 14px;
+}
 @media only screen and (min-width: 650px) {
     body {
         display: flex;
@@ -33,7 +71,7 @@ input::placeholder {
         align-items: center;
     }
     main {
-        background: white;
+        background: #FFF;
         border: 1px solid #e6e6e6;
         width: 650px;
     }

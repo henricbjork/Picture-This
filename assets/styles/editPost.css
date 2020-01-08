@@ -1,0 +1,31 @@
+.editIcon {
+    width: 15px;
+    height: 15px;
+}
+.editPostContainer {
+    display: flex;
+    margin: 20px 0px 70px 0px;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 10px;
+}
+.editPostContainer form input {
+    border: none;
+    display: flex;
+    margin-top: 10px;
+}
+.editPostContainer form textarea {
+    margin-bottom: 10px;
+}
+.editPostContainer form button {
+    margin: 0px;
+}
+.deleteForm {
+    margin-top: 20px;
+}
+.deleteButton {
+    border: 2px solid #eb5757;
+    background-color: #f39595;
+    color: white;
+}
