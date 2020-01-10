@@ -2,7 +2,7 @@
 <?php if (isset($_SESSION['user'])) : ?>
 
     <nav>
-        <h1>Kindagram</h1>
+        <h1 class="navName">Kindagram</h1>
         <a href="/search.php"><img class="searchIcon" src="/icons/search.svg" alt="search icon"></a>
     </nav>
 

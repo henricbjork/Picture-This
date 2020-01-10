@@ -8,6 +8,11 @@
     background: linear-gradient(162deg, rgba(154,63,251,1) 7%, rgba(252,70,83,1) 63%, rgba(252,210,70,1) 100%);
     color: #fff;
 }
+.registerBanner {
+    margin-bottom: 60px;
+    font-size: 60px;
+    font-family: 'Shadows Into Light', cursive;
+}
 .register form {
     width: 80%;
     margin: 30px 0px 10px 0px;

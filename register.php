@@ -2,7 +2,9 @@
 
 <section class="register">
 
-    <h1>Create an account</h1>
+    <h1 class="registerBanner">Kindagram</h1>
+
+    <h2>Create an account</h2>
 
     <form action="app/users/register.php" method="post">
         <label for="name">Full name: </label><br>
