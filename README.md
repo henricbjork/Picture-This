@@ -16,8 +16,7 @@ Instagram clone
 - CSS
 
 ## Preview
-<img width="350" alt="Screenshot 2020-01-13 at 21 49 31" src="https://user-images.githubusercontent.com/51784708/72290940-9d24b900-364e-11ea-85ea-770a0fb08e27.png"><img width="349" alt="Screenshot 2020-01-13 at 21 49 15" src="https://user-images.githubusercontent.com/51784708/72290939-9c8c2280-364e-11ea-99fa-fbe23c4a05d4.png">
-<img width="350" alt="Screenshot 2020-01-13 at 21 39 04" src="https://user-images.githubusercontent.com/51784708/72290803-4b7c2e80-364e-11ea-8b16-f5870eeceb69.png"><img width="350" alt="Screenshot 2020-01-13 at 21 40 32" src="https://user-images.githubusercontent.com/51784708/72290805-4b7c2e80-364e-11ea-98c7-f221171c257a.png">
+<img width="350" alt="Screenshot 2020-01-13 at 21 49 31" src="https://user-images.githubusercontent.com/51784708/72290940-9d24b900-364e-11ea-85ea-770a0fb08e27.png"><img width="350" alt="Screenshot 2020-01-13 at 21 39 04" src="https://user-images.githubusercontent.com/51784708/72290803-4b7c2e80-364e-11ea-8b16-f5870eeceb69.png"><img width="349" alt="Screenshot 2020-01-13 at 21 49 15" src="https://user-images.githubusercontent.com/51784708/72290939-9c8c2280-364e-11ea-99fa-fbe23c4a05d4.png"><img width="350" alt="Screenshot 2020-01-13 at 21 40 32" src="https://user-images.githubusercontent.com/51784708/72290805-4b7c2e80-364e-11ea-98c7-f221171c257a.png">
 
 
 ## Extra added features
