@@ -36,16 +36,16 @@ require __DIR__ . '/views/navigation.php';
                 <img src="/app/uploads/<?= $post['image'] ?>" alt="post image">
             </div>
             <div class="like">
-                <form method="post" class="like__form">
-                    <input type="hidden" name="liked-post-id" value="<?php echo $post['post_id']; ?>">
-                    <button style="width: 30px; height: 30px;" type="submit" class="like__button <?php echo (isLiked($pdo, $user['id'], $post['id'])) ? 'like__button--liked' : 'like__button--unliked'; ?>"><img src="icons/heart.svg"></button>
+                <form method="post" class="likeForm">
+                    <input type="hidden" name="likedPostId" value="<?php echo $post['post_id']; ?>">
+                    <button type="submit" class="likeButton <?php echo (isLiked($pdo, $user['id'], $post['id'])) ? 'likeButton--liked' : 'likeButton--unliked'; ?>"><img class="heartIcon" src="icons/heart.svg" alt="heart icon"></button>
                     <p>
                         <?php
 
                         $likes = getAmountLikes($pdo, $post['post_id']);
                         if ($likes[0] != 0) {
-                        echo ($likes[0] . ' likes this');
-                        } 
+                            echo ($likes[0] . ' likes this');
+                        }
 
                         ?>
                     </p>

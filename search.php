@@ -33,10 +33,10 @@ if (isset($_GET['search'])) {
                     <div class="author">
                         <div class="authorImage">
                             <img src="app/avatar/<?= $user['avatar'] ?>" alt="user avatar">
-                        <?php endif; ?>
                         </div>
                         <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
                     </div>
+                <?php endif; ?>
             </li>
         <?php endforeach; ?>
     </ul>
