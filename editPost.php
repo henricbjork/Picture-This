@@ -26,7 +26,7 @@ if ($_GET['user'] != $_SESSION['user']['id']) {
 </div>
 
 <div class="upload">
-    <img src="/app/uploads/<?= $post['image'] ?>" alt="post image" loading="lazy">
+    <img src="/app/uploads/<?= $post['image'] ?>" alt="post image">
 </div>
 <div class="description">
     <span>

@@ -138,6 +138,15 @@ function getPostById(int $id, PDO $pdo): array
 
     return $post;
 }
+/**
+ * Returns array of all of the users post and the posts from users that the 
+ * user follows from the database.
+ * 
+ *
+ * @param integer $id
+ * @param PDO $pdo
+ * @return void
+ */
 function getAllPostsById(int $id, PDO $pdo)
 {
     $statement = $pdo->prepare(

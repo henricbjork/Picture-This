@@ -2,3 +2,12 @@
     margin: 70px 0px 70px 0px;
     min-height: 100vh;
 }
+.noPostMessageContainer {
+    height: 90vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.noPostMessageLink {
+    color: #2F80ED;
+}

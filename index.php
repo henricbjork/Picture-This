@@ -57,7 +57,9 @@ require __DIR__ . '/views/navigation.php';
 
 
     <?php if (empty($posts)) : ?>
-        <p>There are no posts right now. <a href="/upload.php">Upload a photo!</a></p>
+        <div class="noPostMessageContainer">
+            <p class="noPostsMessage">There are no posts right now. <a class="noPostMessageLink" href="/upload.php">Upload a photo!</a></p>
+        </div>
     <?php endif; ?>
 </section>
 
