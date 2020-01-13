@@ -1,19 +1,19 @@
 const settingsButton = document.querySelector(".settingsButton");
 const settings = document.querySelector(".settings");
 const followButton = document.querySelector(".followButton");
-const likeForms = document.querySelectorAll(".like__form");
+const likeForms = document.querySelectorAll(".likeForm");
 
 likeForms.forEach(likeForm => {
   likeForm.addEventListener("submit", event => {
     event.preventDefault();
     const likeButton = likeForm.childNodes[3];
     //Toggle between filled or unfilled icon on click
-    if (likeButton.classList.contains("like__button--unliked")) {
-      likeButton.classList.toggle("like__button--unliked");
-      likeButton.classList.toggle("like__button--liked");
-    } else if (likeButton.classList.contains("like__button--liked")) {
-      likeButton.classList.toggle("like__button--unliked");
-      likeButton.classList.toggle("like__button--liked");
+    if (likeButton.classList.contains("likeButton--unliked")) {
+      likeButton.classList.toggle("likeButton--unliked");
+      likeButton.classList.toggle("likeButton--liked");
+    } else if (likeButton.classList.contains("likeButton--liked")) {
+      likeButton.classList.toggle("likeButton--unliked");
+      likeButton.classList.toggle("likeButton--liked");
     }
     const formData = new FormData(likeForm);
     fetch("/app/posts/like.php", {

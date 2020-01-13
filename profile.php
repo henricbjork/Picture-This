@@ -72,13 +72,17 @@ if (!isset($user['avatar'])) {
                     <img src="/app/uploads/<?= $post['image'] ?>" alt="post image">
                 </div>
                 <div class="like">
-                    <form method="post" class="like__form">
-                        <input type="hidden" name="liked-post-id" value="<?php echo $post['id']; ?>">
-                        <button style="width: 30px; height: 30px; background: blue;" type="submit" class="like__button <?php echo (isLiked($pdo, $user['id'], $post['id'])) ? 'like__button--liked' : 'like__button--unliked'; ?>"></button>
+                    <form method="post" class="likeForm">
+                        <input type="hidden" name="likedPostId" value="<?php echo $post['id']; ?>">
+                        <button type="submit" class="likeButton" <?php echo (isLiked($pdo, $user['id'], $post['id'])) ? 'likeButton--liked' : 'likeButton--unliked'; ?>"><img class="heartIcon" src="icons/heart.svg" alt="heart icon"></button>
                         <p>
                             <?php
-                            $likes = getAmountLikes($pdo, $post['   id']);
-                            echo ($likes[0] > 0) ? "$likes[0] people likes this" : "Nobody has liked this yet";
+
+                            $likes = getAmountLikes($pdo, $post['id']);
+                            if ($likes[0] != 0) {
+                                echo ($likes[0] . ' likes this');
+                            }
+
                             ?>
                         </p>
                     </form>
