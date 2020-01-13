@@ -15,6 +15,10 @@ Instagram clone
 - HTML
 - CSS
 
+## Extra added features
+- As a user I should be able to follow and unfollow other users.
+- As a user I should be able to view a list of posts by users I follow.
+
 ## Testers
 -
 -
