@@ -22,6 +22,7 @@ require __DIR__ . '/../app/autoload.php';
     <link href="assets/styles/editPost.css" rel="stylesheet">
     <link href="assets/styles/search.css" rel="stylesheet">
     <link href="assets/styles/upload.css" rel="stylesheet">
+    <link href="assets/styles/default.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light&display=swap" rel="stylesheet">
 </head>
