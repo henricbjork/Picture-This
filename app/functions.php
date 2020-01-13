@@ -92,11 +92,8 @@ function getUserById(int $id, PDO $pdo)
 function getPostsById(int $id, PDO $pdo): array
 {
     $statement = $pdo->prepare(
-        'SELECT posts.id, posts.image, posts.description, posts.user_id, 
-    COUNT(post_likes.id) AS likes 
+        'SELECT posts.id, posts.image, posts.description, posts.user_id
     FROM posts 
-    LEFT JOIN post_likes
-    ON posts.id = post_likes.post
     WHERE user_id = :user_id 
     GROUP BY posts.id
     ORDER BY posts.upload_date DESC'
@@ -160,11 +157,9 @@ function getAllPostsById(int $id, PDO $pdo)
     follow.user_id,
     users.id AS author_id, 
     name,
-    avatar,
-	COUNT(post_likes.id) AS likes 
+    avatar
 	FROM posts
-	LEFT JOIN post_likes
-    ON post_id = post_likes.post
+
 	LEFT JOIN follow
 	ON posts.user_id = follow.user_id
 	OR posts.user_id = follow.fu_id
@@ -216,4 +211,38 @@ function searchForUser(string $search, PDO $pdo): array
     } else {
         return $users;
     }
+}
+
+function isLiked($pdo, $userId, $postId)
+{
+    $statement = $pdo->prepare('SELECT *
+        FROM post_likes
+        WHERE user_id = :user_id
+        AND post_id = :post_id');
+
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
+
+    $statement->execute([
+        ':user_id' => $userId,
+        ':post_id' => $postId
+    ]);
+
+    return $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+function getAmountLikes($pdo, $postId)
+{
+    $statement = $pdo->prepare('SELECT COUNT(post_likes.post_id)
+        FROM posts
+        INNER JOIN post_likes
+        ON posts.id = post_likes.post_id
+        WHERE post_likes.post_id = :post_id');
+
+    $statement->execute([
+        ':post_id' => $postId
+    ]);
+
+    return $statement->fetchAll(PDO::FETCH_COLUMN);
 }

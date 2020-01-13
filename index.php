@@ -36,15 +36,20 @@ require __DIR__ . '/views/navigation.php';
                 <img src="/app/uploads/<?= $post['image'] ?>" alt="post image">
             </div>
             <div class="like">
-                <a href="app/posts/like.php?post_id=<?= $post['post_id'] ?>&user_id=<?= $user['id'] ?>&author=<?= $post['author_id'] ?>"><img class="heartIcon" src="/icons/heart.svg" alt="heart icon"></a>
-                <!-- <form action="app/posts/like.php?post_id=<?= $post['post_id'] ?>&user_id=<?= $user['id'] ?>" method="get">
-                    <input type="hidden" name="post_id" id="post_id" value="<?= $post['post_id'] ?>">
-                    <input type="hidden" name="user_id" id="user_id" value="<?= $user['user_id'] ?>">
-                    <button type="submit">Like</button>
-                </form> -->
-                <?php if ($post['likes'] != 0) : ?>
-                    <p><?= $post['likes'] ?> likes this</p>
-                <?php endif; ?>
+                <form method="post" class="like__form">
+                    <input type="hidden" name="liked-post-id" value="<?php echo $post['post_id']; ?>">
+                    <button style="width: 30px; height: 30px;" type="submit" class="like__button <?php echo (isLiked($pdo, $user['id'], $post['id'])) ? 'like__button--liked' : 'like__button--unliked'; ?>"><img src="icons/heart.svg"></button>
+                    <p>
+                        <?php
+
+                        $likes = getAmountLikes($pdo, $post['post_id']);
+                        if ($likes[0] != 0) {
+                        echo ($likes[0] . ' likes this');
+                        } 
+
+                        ?>
+                    </p>
+                </form>
             </div>
             <div class="description">
                 <strong>
