@@ -25,7 +25,7 @@ if (isset($_GET['search'])) {
                 <?php if (!isset($user['avatar'])) : ?>
                     <div class="author">
                         <div class="authorImage">
-                            <img class="searchAvatar" src="app/avatar/default-profile.jpg" alt="user avatar">
+                            <img class="searchAvatar" src="app/default_image/default-profile.jpg" alt="user avatar">
                         </div>
                         <a href="/profile.php?id=<?= $user['id'] ?>"><?= $user['name'] ?></a>
                     </div>
