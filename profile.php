@@ -11,7 +11,7 @@ if (!$_GET['id']) {
     redirect('/profile.php?id=' . $_SESSION['user']['id']);
 }
 if (!isset($user['avatar'])) {
-    $user['avatar'] = 'default-profile.jpg';
+    $user['avatar'] = '../default_image/default-profile.jpg';
 }
 
 ?>

@@ -21,7 +21,7 @@ require __DIR__ . '/views/navigation.php';
                 <div class="author">
                     <div class="authorImage">
                         <?php if (!isset($post['avatar'])) : ?>
-                            <img src="app/avatar/default-profile.jpg" alt="user avatar">
+                            <img src="app/default_image/default-profile.jpg" alt="user avatar">
                         <?php else : ?>
                             <img src="app/avatar/<?= $post['avatar'] ?>" alt="user avatar">
                         <?php endif; ?>
