@@ -3,7 +3,7 @@ require __DIR__ . '/views/header.php';
 authenticateUser();
 $user = getUserById($_SESSION['user']['id'], $pdo);
 if (!isset($user['avatar'])) {
-    $user['avatar'] = 'default-profile.jpg';
+    $user['avatar'] = '../default_image/default-profile.jpg';
 }
 ?>
 
