@@ -24,8 +24,8 @@ Instagram clone
 - As a user I should be able to view a list of posts by users I follow.
 
 ## Testers
--
--
+- [Erik Johannesson](https://github.com/Erik-joh)
+- [Betsy Alva Soplin](https://github.com/milliebase)
 
 ## License
 MIT License
