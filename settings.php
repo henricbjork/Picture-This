@@ -25,4 +25,12 @@
     </form>
 </section>
 
+<section class="changePasswordContainer">
+    <h1>Delete Account</h1>
+    <form action="app/users/deleteAccount.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $_SESSION['user']['id']; ?>">
+        <button class="passwordChangeButton" type="submit">Delete Account</button>
+    </form>
+</section>
+
 <?php require __DIR__ . '/views/footer.php' ?>

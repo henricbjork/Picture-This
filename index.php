@@ -58,6 +58,49 @@ require __DIR__ . '/views/navigation.php';
                 </strong></a><?= $post['description'] ?></p>
             </div>
         </section>
+        <div class="commentContainer-">
+            <div class="commentInnerContainer">
+                <?php foreach (getComment($post['post_id'], $pdo) as $comment) : ?>
+                    <div class="avatarCommentEditDeleteContainer">
+                        <?php if ($_SESSION['user']['id'] === $comment['users_id']) : ?>
+                            <div class="avatarCommentEditDeleteInnerContainer">
+                                <div>
+                                    <a href="profile.php?id=<?php echo $comment['users_id']; ?>"><?php echo getUsersUsername($comment['users_id'], $pdo); ?></a>
+                                    <p class="commentString"><?php echo $comment['comment']; ?></p>
+                                </div>
+
+                                <form class="commentFormEdit" action="#">
+                                    <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
+                                </form>
+                                <button class="commentButtonEdit">Edit</button>
+                            </div>
+
+                        <?php else : ?>
+                            <div>
+                                <a href="profile.php?id=<?php echo $comment['users_id']; ?>"><?php echo getUsersUsername($comment['users_id'], $pdo); ?></a>
+                                <p><?php echo $comment['comment']; ?></p>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($_SESSION['user']['id'] === getUsersIdFromPost($post['post_id'], $pdo) ||  $_SESSION['user']['id'] === $comment['users_id']) : ?>
+                            <form class="commentFormDelete" action="#">
+                                <input type="hidden" name="id" value="<?php echo $comment['id'] ?>">
+                                <button class="commentButton" type="submit">Delete</button>
+                            </form>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+
+            </div>
+            <form class="commentFormComment" action="#" method="post" enctype="multipart/form-data">
+
+                <div class="formCommentCointainer">
+                    <input type="hidden" name="id" value="<?php echo $post['post_id'] ?>">
+                    <textarea class="commentTextarea" type="text" name="comment" maxlength="100" placeholder="add a comment" name="comment"></textarea>
+                </div>
+                <button class="commentButton" type="submit">Post comment</button>
+            </form>
+        </div>
+
     <?php endforeach; ?>
 
 

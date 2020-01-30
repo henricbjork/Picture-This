@@ -20,8 +20,8 @@ if (isset($_FILES['image'], $_POST['description'])) {
         move_uploaded_file($image['tmp_name'], $destination);
 
         $statement = $pdo->prepare(
-            'INSERT INTO posts 
-            (image, user_id, description) 
+            'INSERT INTO posts
+            (image, user_id, description)
             VALUES (:image, :user_id, :description)'
         );
 

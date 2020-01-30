@@ -2,6 +2,26 @@
 
 declare(strict_types=1);
 
+if (!function_exists('json_response')) {
+    /**
+     * Create and return a JSON response.
+     *
+     * @param array $data
+     * @param int $code
+     *
+     * @return string
+     */
+    function json_response(array $data = [], int $code = 200): string
+    {
+
+        http_response_code($code);
+
+        header('Content-Type: application/json');
+
+        return json_encode($data);
+    }
+}
+
 if (!function_exists('redirect')) {
     /**
      * Redirect the user to given path.
@@ -39,7 +59,7 @@ function displayMessage()
 
 /**
  * This function redirects the user back to login page
- * if the user tries to access the site without being 
+ * if the user tries to access the site without being
  * logged in
  *
  * @return void
@@ -70,7 +90,7 @@ function GUID()
  * @param PDO $pdo
  * @return array
  */
-function getUserById(int $id, PDO $pdo) 
+function getUserById(int $id, PDO $pdo)
 {
     $statement = $pdo->prepare('SELECT * FROM users WHERE id = :id');
 
@@ -93,8 +113,8 @@ function getPostsById(int $id, PDO $pdo): array
 {
     $statement = $pdo->prepare(
         'SELECT posts.id, posts.image, posts.description, posts.user_id
-    FROM posts 
-    WHERE user_id = :user_id 
+    FROM posts
+    WHERE user_id = :user_id
     GROUP BY posts.id
     ORDER BY posts.upload_date DESC'
     );
@@ -114,7 +134,7 @@ function getPostsById(int $id, PDO $pdo): array
 
 /**
  * Gets one post from database to frontend, with id from database
- * 
+ *
  * @param integer $postId
  * @param PDO $pdo
  * @return array
@@ -136,9 +156,9 @@ function getPostById(int $id, PDO $pdo): array
     return $post;
 }
 /**
- * Returns array of all of the users post and the posts from users that the 
+ * Returns array of all of the users post and the posts from users that the
  * user follows from the database.
- * 
+ *
  *
  * @param integer $id
  * @param PDO $pdo
@@ -147,7 +167,7 @@ function getPostById(int $id, PDO $pdo): array
 function getAllPostsById(int $id, PDO $pdo)
 {
     $statement = $pdo->prepare(
-    'SELECT 
+        'SELECT
     posts.id AS post_id,
     image,
     description,
@@ -155,7 +175,7 @@ function getAllPostsById(int $id, PDO $pdo)
     upload_date,
     fu_id,
     follow.user_id,
-    users.id AS author_id, 
+    users.id AS author_id,
     name,
     avatar
 	FROM posts
@@ -176,9 +196,8 @@ function getAllPostsById(int $id, PDO $pdo)
     ]);
 
     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-    
+
     return $posts;
-    
 }
 /**
  * Fetches users id, name and avatar image from database from search query
@@ -245,4 +264,91 @@ function getAmountLikes($pdo, $postId)
     ]);
 
     return $statement->fetchAll(PDO::FETCH_COLUMN);
+}
+
+if (!function_exists('getComment')) {
+    /**
+     * get all comments to post
+     *
+     * @param string $id
+     * @param PDO $pde
+     *
+     * @return array
+     */
+    function getComment(String $id, $pdo): array
+    {
+        $sql = 'SELECT * FROM comments WHERE post_id=:id';
+
+        $statment = $pdo->prepare($sql);
+
+        if (!$statment) {
+            die(var_dump($pdo->errorInfo()));
+        }
+
+        $statment->execute([
+            ':id' => $id,
+        ]);
+
+        $comments = $statment->fetchAll(PDO::FETCH_ASSOC);
+
+        return $comments;
+    }
+}
+
+if (!function_exists('getUsersUsername')) {
+    /**
+     *  Get one user username
+     *
+     *  @param string $userId
+     * @param PDO $pdo
+     *
+     * @return string
+     */
+    function getUsersUsername(string $userId, PDO $pdo): string
+    {
+        $sql = 'SELECT name FROM users WHERE id=:id';
+
+        $statement = $pdo->prepare($sql);
+
+        if (!$statement) {
+            die(var_dump($pdo->errorInfo()));
+        }
+
+        $statement->execute([
+            ':id' => $userId,
+        ]);
+
+        $username = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $username['name'];
+    }
+}
+
+if (!function_exists('getUsersIdFromPost')) {
+    /**
+     *  Get one user username
+     *
+     *  @param string $userId
+     * @param PDO $pdo
+     *
+     * @return string
+     */
+    function getUsersIdFromPost(string $postId, PDO $pdo): string
+    {
+        $sql = 'SELECT user_id FROM posts WHERE id=:id';
+
+        $statement = $pdo->prepare($sql);
+
+        if (!$statement) {
+            die(var_dump($pdo->errorInfo()));
+        }
+
+        $statement->execute([
+            ':id' => $postId,
+        ]);
+
+        $userId = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $userId['user_id'];
+    }
 }
