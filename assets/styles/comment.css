@@ -1,0 +1,55 @@
+.avatarCommentEditDeleteContainer a {
+    font-weight: 800;
+    margin-right: 5px;
+}
+
+.avatarCommentEditDeleteContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.avatarCommentEditDeleteContainer div {
+    display: flex;
+    flex-direction: row;
+}
+
+.avatarCommentEditDeleteInnerContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.commentFormEdit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.commentButtonEdit {
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid black;
+}
+
+.commentFormDelete {
+    display: flex;
+    flex-direction: row;
+    margin-left: 4px;
+    margin-right: 2px;
+}
+
+.commentButton {
+    height: 100%;
+    padding-left: 2px;
+    padding-right: 2px;
+    border: 1px solid black;
+}
+
+.formCommentCointainer {
+    display: flex;
+    flex-direction: column;
+}

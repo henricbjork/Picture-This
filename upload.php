@@ -2,6 +2,7 @@
 require __DIR__ . '/views/header.php';
 authenticateUser();
 $posts = getPostsById($_SESSION['user']['id'], $pdo);
+
 ?>
 
 <?php if (isset($_SESSION['errors'][0])) : ?>

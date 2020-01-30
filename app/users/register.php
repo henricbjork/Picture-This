@@ -18,7 +18,7 @@ if (isset($_POST['email'], $_POST['password'])) {
         $_SESSION['errors'][] = 'Unvalid Email';
         redirect('/register.php');
     }
-    // Compares the given email to the exisiting emails within the database to see if 
+    // Compares the given email to the exisiting emails within the database to see if
     // it's already been registered
     $secondStatement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
 
@@ -29,7 +29,7 @@ if (isset($_POST['email'], $_POST['password'])) {
     $user = $secondStatement->fetch(PDO::FETCH_ASSOC);
 
     // Pushes error message to errors array if the email has already been registered
-    // and redirects the user back to the register page 
+    // and redirects the user back to the register page
     if ($user) {
         if ($user['email'] === $email) {
             $_SESSION['errors'][] = 'This email is already taken';
@@ -52,4 +52,4 @@ if (isset($_POST['email'], $_POST['password'])) {
     $_SESSION['messages'][0] = 'Your account has been successfully created! Log in to start uploading photos.';
 }
 
-redirect('/index.php');
+redirect('/login.php');
